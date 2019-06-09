@@ -1,0 +1,8 @@
+{
+  "pt": {
+    "header": "Você foi convidado(a) a entrar em um servidor",
+    "online": "{{count}} online",
+    "members": "{{count}} Membros",
+    "button": "Juntar-se"
+  }
+}
