@@ -4,5 +4,11 @@
     "online": "{{count}} online",
     "members": "{{count}} Membros",
     "button": "Juntar-se"
+  },
+  "lt": {
+    "header": "Tu buvai pakviestas prisijungti prie serverio",
+    "online": "{{count}} prisijungęs",
+    "members": "{{count}} Nariai",
+    "button": "Prisijungti"
   }
 }
