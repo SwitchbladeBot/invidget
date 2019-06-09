@@ -1,14 +1,20 @@
 {
-  "pt": {
-    "header": "Você foi convidado(a) a entrar em um servidor",
-    "online": "{{count}} online",
-    "members": "{{count}} Membros",
-    "button": "Juntar-se"
+  "en": {
+    "header": "You've been invited to join a server",
+    "online": "{{count}} Online",
+    "members": "{{count}} Members",
+    "button": "Join"
   },
   "lt": {
     "header": "Tu buvai pakviestas prisijungti prie serverio",
     "online": "{{count}} prisijungęs",
     "members": "{{count}} Nariai",
     "button": "Prisijungti"
+  },
+  "pt": {
+    "header": "Você foi convidado(a) a entrar em um servidor",
+    "online": "{{count}} online",
+    "members": "{{count}} Membros",
+    "button": "Juntar-se"
   }
 }
