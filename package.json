@@ -2,16 +2,20 @@
   "name": "invidget",
   "version": "1.0.0",
   "description": "SVG invite widgets that look just like the ones on the Discord client!",
-  "main": "index.js",
+  "main": "src/index.js",
   "dependencies": {
+    "@svgdotjs/svg.js": "^3.0.12",
     "express": "^4.17.1",
-    "node-fetch": "^2.6.0"
+    "node-fetch": "^2.6.0",
+    "svg-builder": "^1.0.0"
   },
   "devDependencies": {
     "@dollarshaveclub/cloudworker": "0.0.11",
     "mocha": "^6.1.4",
     "mocha-standard": "^1.0.0",
-    "standard": "^12.0.1"
+    "standard": "^12.0.1",
+    "webpack": "^4.33.0",
+    "webpack-cli": "^3.3.3"
   },
   "scripts": {
     "start-dev": "cloudworker --port 6969 --debug --watch index.js",
