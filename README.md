@@ -1,6 +1,8 @@
 # invidget
 SVG invite widgets that look just like the ones on the Discord client!
 
+**THIS PROJECT IS WIP!**
+
 ### Roadmap
 - [ ] Generate SVGs
 - [ ] Generate rasters
