@@ -39,7 +39,8 @@
   "homepage": "https://github.com/SwitchbladeBot/invidget#readme",
   "standard": {
     "env": [
-      "mocha"
+      "mocha",
+      "worker"
     ]
   }
 }
