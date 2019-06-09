@@ -8,9 +8,18 @@
     "node-fetch": "^2.6.0",
     "svg-builder": "^1.0.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "dotenv": "^8.0.0",
+    "mocha": "^6.1.4",
+    "mocha-standard": "^1.0.0",
+    "nodemon": "^1.19.1",
+    "standard": "^12.0.1"
+  },
   "scripts": {
-    "test": "exit 1"
+    "start": "node index.js",
+    "start-dev": "nodemon --exec node -r dotenv/config index.js",
+    "test": "mocha src/test --recursive",
+    "fix": "standard --fix"
   },
   "repository": {
     "type": "git",
@@ -26,5 +35,15 @@
   "bugs": {
     "url": "https://github.com/SwitchbladeBot/invidget/issues"
   },
-  "homepage": "https://github.com/SwitchbladeBot/invidget#readme"
+  "homepage": "https://github.com/SwitchbladeBot/invidget#readme",
+  "nodemonConfig": {
+    "ignore": [
+      "locales/*"
+    ]
+  },
+  "standard": {
+    "env": [
+      "mocha"
+    ]
+  }
 }
