@@ -18,9 +18,10 @@
     "webpack-cli": "^3.3.3"
   },
   "scripts": {
-    "start-dev": "cloudworker --port 6969 --debug --watch index.js",
+    "cloudworker": "cloudworker --port 6969 --debug --watch dist/main.js",
     "test": "mocha src/test --recursive",
-    "fix": "standard --fix"
+    "fix": "standard --fix",
+    "webpack-watch": "webpack --watch"
   },
   "repository": {
     "type": "git",
