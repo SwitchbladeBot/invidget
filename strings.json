@@ -5,4 +5,11 @@
     "members": "{{count}} Membros",
     "button": "Juntar-se"
   }
+  "lt-LT": {
+    "header": "Tu buvai pakviesta(s) prisijungti prie serverio",
+    "online": "{{count}} prisijungę",
+    "members": "{{count}} nariai",
+    "button": "Prisijungti"
+  }
+
 }
