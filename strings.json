@@ -1,4 +1,5 @@
 {
+  "_info": "LANGUAGE CODES SHOULD BE IN ISO 639-1 FORMAT!"
   "pt": {
     "header": "Você foi convidado(a) a entrar em um servidor",
     "online": "{{count}} online",
