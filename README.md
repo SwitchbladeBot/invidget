@@ -4,11 +4,12 @@ SVG invite widgets that look just like the ones on the Discord client!
 **THIS PROJECT IS WIP!**
 
 ### Planned features
-- [ ] Test code style
-- [ ] Test strings.json
-  - [ ] JSON lint
-  - [ ] ISO ISO 639-1 language codes
-  - [ ] Required strings exist
+- [ ] Unit Tests
+  - [x] Code Style
+  - [ ] strings.json
+    - [ ] JSON lint
+    - [ ] ISO ISO 639-1 language codes
+    - [ ] Required strings exist
 - [ ] Generate SVGs
 - [ ] Generate rasters
 - [ ] Generate HTML(?)
