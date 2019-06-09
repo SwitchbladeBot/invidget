@@ -7,7 +7,7 @@
   },
   "lt": {
     "header": "Tu buvai pakviestas prisijungti prie serverio",
-    "online": "{{count}} prisijungę",
+    "online": "{{count}} prisijungęs",
     "members": "{{count}} Nariai",
     "button": "Prisijungti"
   }
