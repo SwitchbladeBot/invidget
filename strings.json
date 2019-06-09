@@ -5,6 +5,12 @@
     "members": "{{count}} Members",
     "button": "Join"
   },
+  "es": {
+    "header": "Te han invitado a unirte a un servidor",
+    "online": "{{count}} en línea",
+    "members": "{{count}} miembros",
+    "button": "Unirse"
+  },
   "lt": {
     "header": "Tu buvai pakviestas prisijungti prie serverio",
     "online": "{{count}} prisijungęs",
