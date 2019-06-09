@@ -11,6 +11,12 @@
     "members": "{{count}} miembros",
     "button": "Unirse"
   },
+  "hu": {
+    "header": "Meghívtak, hogy csatlakozz egy szerverre",
+    "online": "{{count}} online",
+    "members": "{{count}} tag",
+    "button": "Csatlakozás"
+  },
   "lt": {
     "header": "Tu buvai pakviestas prisijungti prie serverio",
     "online": "{{count}} prisijungęs",
