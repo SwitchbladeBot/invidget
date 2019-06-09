@@ -11,7 +11,7 @@ async function handleRequest (request) {
       y: 20,
       'font-family': 'helvetica',
       'font-size': 15,
-      stroke : '#000',
+      stroke: '#000',
       fill: '#000'
     }, 'invidget').render()
 
