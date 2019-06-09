@@ -6,7 +6,7 @@
     "button": "Juntar-se"
   },
   "lt": {
-    "header": "Tu buvai pakviesta(s) prisijungti prie serverio",
+    "header": "Tu buvai pakviestas prisijungti prie serverio",
     "online": "{{count}} prisijungę",
     "members": "{{count}} Nariai",
     "button": "Prisijungti"
