@@ -12,8 +12,8 @@ async function handleRequest (request) {
       'font-family': 'helvetica',
       'font-size': 15,
       stroke: '#000',
-      fill: '#000'
-    }, 'invidget').render()
+      fill: '#fff'
+    }, 'Test!').render()
 
   const response = new Response(logo)
   response.headers.set('Content-Type', 'image/svg+xml')
