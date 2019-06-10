@@ -1,22 +1,16 @@
-const svg = require('svg-builder')
+const window = require('svgdom')
+const { SVG, registerWindow } = require('svg.js')
 
 addEventListener('fetch', event => {
   event.respondWith(handleRequest(event.request))
 })
 
 async function handleRequest (request) {
-  var logo = svg.newInstance()
-    .text({
-      x: 10,
-      y: 20,
-      'font-family': 'helvetica',
-      'font-size': 15,
-      stroke: '#000',
-      fill: '#fff'
-    }, 'Test!').render()
-
-  const response = new Response(logo)
+  // const inviteCode = new URL(request.url).searchParams.get('inviteCode') || 'Error'
+  registerWindow(window, window.document)
+  const canvas = SVG(window.document)
+  canvas.rect(100, 100).fill('yellow').move(50, 50)
+  const response = new Response(canvas.svg())
   response.headers.set('Content-Type', 'image/svg+xml')
-
   return response
 }

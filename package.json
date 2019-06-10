@@ -7,7 +7,9 @@
     "@svgdotjs/svg.js": "^3.0.12",
     "express": "^4.17.1",
     "node-fetch": "^2.6.0",
-    "svg-builder": "^1.0.0"
+    "svg-builder": "^1.0.0",
+    "svg.js": "^2.7.1",
+    "svgdom": "0.0.20"
   },
   "devDependencies": {
     "@cloudflare/wrangler": "^1.0.2",
