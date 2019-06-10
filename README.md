@@ -13,11 +13,13 @@ SVG invite widgets that look just like the ones on the Discord client!
 - [x] Generate and serve SVGs
 - [ ] Make the SVG look like the discord invite widget
 - [x] Automatically deploy to cloudflare through CircleCI
+- [ ] Watch for `src` changes, build and restart cloudworker automatically
 
 ### Setting up a development environment
 - Clone this repo
 - `npm install`
-- Run `npm start webpack-watch` and `npm start cloudworker`
+- Run `npm run build` to build and `npm start cloudworker` to serve the worker at `localhost:6969`
+  - build doesn't watch for changes yet, beware.
 
 ### String guidelines
 - Language codes should be in [ISO 639-1](https://en.wikipedia.org/wiki/ISO_639-1) format
