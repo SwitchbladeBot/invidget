@@ -35,11 +35,14 @@ jobs:
           name: Create wrangler.toml
           command: echo -e "name = \"$CLOUDFLARE_WORKER_NAME\"\ntype = \"webpack\"\nzone_id = \"$CLOUDFLARE_ZONE_ID\"\nprivate = false\naccount_id = \"$CLOUDFLARE_ACCOUNT_ID\"\nroute = \"$CLOUDFLARE_ROUTE\"" > wrangler.toml
       - run:
+          name: Install Wrangler Globally
+          command: npm install wrangler -g
+      - run:
           name: Configure Wrangler
           command: wrangler config $CLOUDFLARE_EMAIL $CLOUDFLARE_API_KEY
       - run:
           name: Deploy
-          command: wrangler publish --release
+          command: npm
 
 workflows:
   version: 2
