@@ -10,18 +10,21 @@
     "svg-builder": "^1.0.0"
   },
   "devDependencies": {
+    "@cloudflare/wrangler": "^1.0.2",
     "@dollarshaveclub/cloudworker": "0.0.11",
     "mocha": "^6.1.4",
     "mocha-standard": "^1.0.0",
+    "nodemon": "^1.19.1",
     "standard": "^12.0.1",
     "webpack": "^4.33.0",
     "webpack-cli": "^3.3.3"
   },
   "scripts": {
-    "cloudworker": "cloudworker --port 6969 --debug --watch dist/main.js",
+    "cloudworker": "cloudworker --port 6969 --debug --watch worker/script.js",
     "test": "mocha src/test --recursive",
     "fix": "standard --fix",
-    "webpack-watch": "webpack --watch"
+    "build": "wrangler build",
+    "deploy": "wrangler publish --release"
   },
   "repository": {
     "type": "git",

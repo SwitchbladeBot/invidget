@@ -1,5 +1,11 @@
 version: 2
 jobs:
+  crowdin-upload:
+    docker:
+      - image: dougley/crowdin
+    steps:
+      - checkout
+      - run: crowdin upload sources
   test:
     docker:
       - image: node:chakracore-10.13.0
@@ -17,9 +23,41 @@ jobs:
       - run:
           name: Test
           command: npm test
+  deploy:
+    docker:
+      - image: node:chakracore-10.13.0
+    steps:
+      - checkout
+      - run:
+          name: Install modules
+          command: npm install
+      - run:
+          name: Create wrangler.toml
+          command: echo -e "name = \"$CLOUDFLARE_WORKER_NAME\"\ntype = \"webpack\"\nzone_id = \"$CLOUDFLARE_ZONE_ID\"\nprivate = false\naccount_id = \"$CLOUDFLARE_ACCOUNT_ID\"\nroute = \"$CLOUDFLARE_ROUTE\"" > wrangler.toml
+      - run:
+          name: Configure Wrangler
+          command: wrangler config $CLOUDFLARE_EMAIL $CLOUDFLARE_API_KEY
+      - run:
+          name: Deploy
+          command: wrangler publish --release
 
 workflows:
   version: 2
   test:
     jobs:
-      - test
+      - test:
+          filters:
+            branches:
+              ignore: /master|dev/
+  deploy:
+    jobs:
+      - test:
+          filters:
+            branches:
+              only: /master|dev/
+      - deploy:
+          requires:
+            - test
+          filters:
+            branches:
+              only: /master|dev/
