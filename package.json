@@ -24,7 +24,8 @@
     "test": "mocha src/test --recursive",
     "fix": "standard --fix",
     "build": "wrangler build",
-    "deploy": "wrangler publish --release"
+    "deploy": "wrangler publish --release",
+    "wrangler-config": "wrangler config"
   },
   "repository": {
     "type": "git",
