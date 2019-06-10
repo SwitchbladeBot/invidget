@@ -12,7 +12,7 @@ SVG invite widgets that look just like the ones on the Discord client!
     - [ ] Required strings exist
 - [x] Generate and serve SVGs
 - [ ] Make the SVG look like the discord invite widget
-- [ ] Automatically deploy to cloudflare through CircleCI
+- [x] Automatically deploy to cloudflare through CircleCI
 
 ### Setting up a development environment
 - Clone this repo
