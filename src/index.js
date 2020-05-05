@@ -1,16 +1,28 @@
-const window = require('svgdom')
-const { SVG, registerWindow } = require('svg.js')
+const express = require('express')
+const app = express()
 
-addEventListener('fetch', event => {
-  event.respondWith(handleRequest(event.request))
+const svgdom = require('svgdom')
+const { SVG, registerWindow } = require('@svgdotjs/svg.js')
+
+const window = svgdom.createSVGWindow()
+const document = window.document
+
+registerWindow(window, document)
+
+const strings = require('./strings.json')
+const PORT = process.env.PORT || 8080
+
+app.get('/svg/:inviteCode', function (req, res) {
+  const canvas = SVG(document.documentElement)
+  canvas.rect(430, 110).radius(3).fill('#2f3136')
+  canvas.rect(50, 50).radius(15).move(15, 45).fill('#ffffff')
+  canvas.rect(95, 40).radius(3).move(320, 50).fill('#43b581')
+  canvas.text(strings.pt.header.toUpperCase()).fill('#ffffff')
+
+  res.setHeader('Content-Type', 'image/svg+xml')
+  res.send(canvas.svg())
 })
 
-async function handleRequest (request) {
-  // const inviteCode = new URL(request.url).searchParams.get('inviteCode') || 'Error'
-  registerWindow(window, window.document)
-  const canvas = SVG(window.document)
-  canvas.rect(100, 100).fill('yellow').move(50, 50)
-  const response = new Response(canvas.svg())
-  response.headers.set('Content-Type', 'image/svg+xml')
-  return response
-}
+app.listen(PORT, function () {
+  console.log(`Listening on post ${PORT}`)
+})

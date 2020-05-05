@@ -2,27 +2,27 @@
 
 SVG invite widgets that look just like the ones on the Discord client!
 
-**THIS PROJECT IS WIP!**
+**⚠ THIS PROJECT IS WIP!**
 
 ## Planned features
 
 - [ ] Unit Tests
-  - [x] Code Style
+  - [ ] Code Style
   - [ ] strings.json
     - [ ] JSON lint
     - [ ] ISO ISO 639-1 language codes
     - [ ] Required strings exist
-- [x] Generate and serve SVGs
+- [ ] Generate and serve SVGs
 - [ ] Make the SVG look like the discord invite widget
-- [x] Automatically deploy to cloudflare through CircleCI
-- [ ] Watch for `src` changes, build and restart cloudworker automatically
+- [ ] Automatically build and push to Docker Hub through GitHub Actions
+- [ ] Watch for `src` changes and restart automatically for development
 
 ## Setting up a development environment
 
 - Clone this repo
 - `npm install`
-- Run `npm run build` to build and `npm start cloudworker` to serve the worker at `localhost:6969`
-  - build doesn't watch for changes yet, beware.
+- Run `npm run dev` to get the development server up
+- Access it through http://localhost:8080/
 
 ## String guidelines
 

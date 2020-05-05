@@ -4,50 +4,24 @@
   "description": "SVG invite widgets that look just like the ones on the Discord client!",
   "main": "src/index.js",
   "dependencies": {
-    "@svgdotjs/svg.js": "^3.0.12",
+    "@svgdotjs/svg.js": "^3.0.16",
     "express": "^4.17.1",
     "node-fetch": "^2.6.0",
-    "svg-builder": "^1.0.0",
-    "svg.js": "^2.7.1",
-    "svgdom": "0.0.20"
+    "svgdom": "^0.1.4"
   },
   "devDependencies": {
-    "@cloudflare/wrangler": "^1.0.2",
-    "@dollarshaveclub/cloudworker": "0.0.11",
-    "mocha": "^6.1.4",
-    "mocha-standard": "^1.0.0",
-    "nodemon": "^1.19.1",
-    "standard": "^12.0.1",
-    "webpack": "^4.33.0",
-    "webpack-cli": "^3.3.3"
+    "dotenv": "^8.2.0",
+    "nodemon": "^2.0.3",
+    "standard": "^14.3.3"
   },
   "scripts": {
-    "cloudworker": "cloudworker --port 6969 --debug --watch worker/script.js",
-    "test": "mocha src/test --recursive",
-    "fix": "standard --fix",
-    "build": "wrangler build",
-    "deploy": "wrangler publish --release",
-    "wrangler-config": "wrangler config"
+    "start": "node src/index.js",
+    "dev": "nodemon --exec node -r dotenv/config src"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/SwitchbladeBot/invidget.git"
+    "url": "git+https://github.com/SwitchbladeBot/invidget.git"
   },
-  "keywords": [
-    "svg",
-    "discord",
-    "widgets"
-  ],
-  "author": "Switchblade Team <@SwitchbladeBot>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/SwitchbladeBot/invidget/issues"
-  },
-  "homepage": "https://github.com/SwitchbladeBot/invidget#readme",
-  "standard": {
-    "env": [
-      "mocha",
-      "worker"
-    ]
-  }
+  "author": "Switchblade Team",
+  "license": "MIT"
 }
