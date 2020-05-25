@@ -2,6 +2,8 @@
 
 SVG invite widgets that look just like the ones on the Discord client!
 
+![Widget Preview](http://45.33.27.208:8080/svg/2FB8wDG?language=en)
+
 **⚠ THIS PROJECT IS WIP!**
 
 ## Planned features
