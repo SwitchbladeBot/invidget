@@ -1,4 +1,10 @@
   {
+  "da": {
+    "header": "Du er blevet inviteret til at tilslutte dig en server",
+    "online": "{{count}} online",
+    "members": "{{count}} medlemmer",
+    "button": "Tilslut"
+  },
   "en": {
     "header": "You've been invited to join a server",
     "online": "{{count}} Online",
