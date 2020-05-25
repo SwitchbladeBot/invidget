@@ -15,7 +15,7 @@ SVG invite widgets that look just like the ones on the Discord client!
     - [ ] ISO 639-1 language codes
     - [ ] Required strings exist
 - [x] Generate and serve SVGs
-- [ ] Make the SVG look like the discord invite widget
+- [x] Make the SVG look like the discord invite widget
 - [ ] Automatically build and push to Docker Hub through GitHub Actions
 - [x] Watch for `src` changes and restart automatically for development
 

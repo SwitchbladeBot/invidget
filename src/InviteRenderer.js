@@ -1,7 +1,7 @@
 const svgdom = require('svgdom')
 const SVG = require('@svgdotjs/svg.js')
-const fetch = require('node-fetch')
 const TextToSVG = require('text-to-svg')
+const Discord = require('./Discord.js')
 
 SVG.extend([SVG.Path, SVG.Circle], {
   rightmost: function() {
@@ -20,37 +20,50 @@ const strings = require('./strings.json')
 
 const PADDING = 16
 const ICON_SIZE = 50
+
+const HEADER_FONT_SIZE = 12
+const HEADER_LINE_HEIGHT = 16
+const HEADER_MARGIN_BOTTOM = 12
+
 const SERVER_NAME_SIZE = 16
-const HEADER_SIZE = 12
+const SERVER_NAME_LINE_HEIGHT = 20
+const SERVER_NAME_MARGIN_BOTTOM = 2
+
+const PRESENCE_FONT_SIZE = 14
+const PRESENCE_LINE_HEIGHT = 16
+const PRESENCE_TEXT_MARGIN_RIGHT = 8
+
+const PRESENCE_DOT_SIZE = 8
+const PRESENCE_DOT_MARGIN_RIGHT = 4
+
 const INVITE_WIDTH = 430
 const INVITE_HEIGHT = 110
+
 const BUTTON_WIDTH = 94.75
 const BUTTON_HEIGHT = 40
+const BUTTON_MARGIN_LEFT = 10
+
 const BADGE_MARGIN_RIGHT = 8
-const STATUS_CIRCLE_MARGIN_RIGHT = 4
 
 const INNER_X = 2 * PADDING + ICON_SIZE
-const INNER_Y = PADDING + HEADER_SIZE + 12
+const INNER_Y = PADDING + HEADER_FONT_SIZE + 12
 
 const Constants = require('./constants.js')
-
-const iconCache = {}
-const inviteCache = {}
+const BADGES = {
+  VERIFIED: {
+    FLOWERSTAR_COLOR: '#7289da',
+    ICON: Constants.VERIFIED_ICON
+  },
+  PARTNERED: {
+    FLOWERSTAR_COLOR: '#4087ed',
+    ICON: Constants.PARTNER_ICON
+  }
+}
 
 module.exports = class InviteRenderer {
   static async render (inviteCode, language = 'en', animation = true) {
-    let invite
-    let inviteCacheHit
-    if (inviteCache[inviteCode]) {
-      inviteCacheHit = true
-      invite = inviteCache[inviteCode]
-    } else {
-      inviteCacheHit = false
-      invite = await fetch(`https://discordapp.com/api/v6/invites/${inviteCode}?with_counts=true`).then(res => res.json())
-      inviteCache[inviteCode] = invite
-    }
+    const invite = await Discord.getInvite(inviteCode)
     const locale = strings[language] || strings['en']
-  
     const window = svgdom.createSVGWindow()
     const document = window.document
     SVG.registerWindow(window, document)
@@ -60,55 +73,95 @@ module.exports = class InviteRenderer {
     // Background
     canvas.rect(INVITE_WIDTH, INVITE_HEIGHT).radius(3).fill('#2f3136')
   
+    // Main Container
+    const mainContainer = canvas.nested()
+      .width(INVITE_WIDTH - 2 * PADDING)
+      .height(INVITE_HEIGHT - 2 * PADDING)
+      .move(PADDING, PADDING)
+
+    // Header
+    const headerContainer = mainContainer.nested().width(mainContainer.width()).height(HEADER_LINE_HEIGHT)
+    headerContainer.path(whitneyBold.getD(locale.header.toUpperCase(), { anchor: 'top left', fontSize: HEADER_FONT_SIZE })).fill('#b9bbbe')
+
+    // Content Container
+    const contentContainer = mainContainer.nested()
+      .width(mainContainer.width())
+      .height(mainContainer.height() - headerContainer.height() - HEADER_MARGIN_BOTTOM)
+      .move(0, headerContainer.height() + HEADER_MARGIN_BOTTOM)
+
     // Server Icon
-    let icon
-    let iconCacheHit
-    if (iconCache[invite.guild.icon]) {
-      iconCacheHit = true
-      icon = iconCache[invite.guild.icon]
-    } else {
-      iconCacheHit = false
-      icon = await fetch(`https://cdn.discordapp.com/icons/${invite.guild.id}/${invite.guild.icon}${invite.guild.icon.startsWith('a_') ? '.gif' : '.jpg'}`).then(res => res.buffer()).then(buffer => buffer.toString('base64'))
-      iconCache[invite.guild.icon] = icon
-    }
-    const squircle = canvas.rect(ICON_SIZE, ICON_SIZE).radius(16).move(PADDING, INNER_Y).fill('#2f3136')
-    const iconImage = canvas.image(`data:image/${invite.guild.icon.startsWith('a_') ? 'gif' : 'jpg'};base64,${icon}`).size(ICON_SIZE, ICON_SIZE).move(PADDING, INNER_Y)
+    const iconBase64 = await Discord.getIcon(invite.guild.id, invite.guild.icon)
+    const squircle = contentContainer.rect(ICON_SIZE, ICON_SIZE).radius(16).fill('#2f3136')
+    const iconImage = contentContainer.image(`data:image/${invite.guild.icon.startsWith('a_') ? 'gif' : 'jpg'};base64,${iconBase64}`).size(ICON_SIZE, ICON_SIZE)
     iconImage.clipWith(squircle)
   
     // Join button
-    const joinButtonRect = canvas.rect(BUTTON_WIDTH, BUTTON_HEIGHT).radius(3).move(INVITE_WIDTH - PADDING - BUTTON_WIDTH, 50).fill('#43b581')
-    const joinButtonText = canvas.path(whitneyMedium.getD(locale.button, { anchor: 'left top', fontSize: 14 })).fill('#ffffff')
-    joinButtonText.move(joinButtonRect.x() + joinButtonRect.width()/2 - joinButtonText.width()/2, joinButtonRect.y() + joinButtonRect.height()/2 - joinButtonText.height()/2)
+    const buttonContainer = contentContainer.nested()
+      .width(BUTTON_WIDTH)
+      .height(BUTTON_HEIGHT)
+      .move(contentContainer.width() - BUTTON_WIDTH, (contentContainer.height() - BUTTON_HEIGHT)/2)
+    const joinButtonRect = buttonContainer.rect(BUTTON_WIDTH, BUTTON_HEIGHT)
+      .radius(3)
+      .fill('#43b581')
+    const joinButtonText = buttonContainer.path(whitneyMedium.getD(locale.button, { fontSize: 14 }))
+      .fill('#ffffff')
+    joinButtonText.move((BUTTON_WIDTH - joinButtonText.width())/2, (BUTTON_HEIGHT - joinButtonText.height())/2)
   
-    // Header
-    canvas.path(whitneyBold.getD(locale.header.toUpperCase(), { x: PADDING, y: PADDING, anchor: 'left top', fontSize: HEADER_SIZE })).fill('#b9bbbe')
-  
-    let EXTRA_NAME_PADDING = 0
-  
+    let EXTRA_SERVER_NAME_PADDING = 0
+
+    const innerContainer = contentContainer.nested()
+      .width(contentContainer.width() - ICON_SIZE - PADDING - BUTTON_WIDTH - BUTTON_MARGIN_LEFT)
+      .height(SERVER_NAME_LINE_HEIGHT + SERVER_NAME_MARGIN_BOTTOM + PRESENCE_LINE_HEIGHT)
+      .x(ICON_SIZE + PADDING, 0)
+    innerContainer.y((contentContainer.height() - innerContainer.height())/2)
+
+    const badgeContainer = innerContainer.nested().y(2)
+
     // Partner Badge
     if (invite.guild.features.includes('PARTNERED')) {
-      canvas.path(Constants.SPECIAL_BADGE).move(INNER_X, INNER_Y).fill('#4087ed')
-      canvas.path(Constants.PARTNER_ICON).move(INNER_X + Constants.PARTNER_ICON_X_OFFSET, INNER_Y + Constants.PARTNER_ICON_Y_OFFSET).fill('#ffffff')
-      EXTRA_NAME_PADDING = PADDING + BADGE_MARGIN_RIGHT
+      const flowerStar = badgeContainer.path(Constants.SPECIAL_BADGE).fill(BADGES.PARTNERED.FLOWERSTAR_COLOR)
+      badgeContainer.path(Constants.PARTNER_ICON).fill('#ffffff')
+      EXTRA_SERVER_NAME_PADDING = flowerStar.width() + BADGE_MARGIN_RIGHT
     }
   
     // Verified Badge
     if (invite.guild.features.includes('VERIFIED')) {
-      canvas.path(Constants.SPECIAL_BADGE).move(INNER_X, INNER_Y).fill('#7289da')
-      canvas.path(Constants.VERIFIED_ICON).move(INNER_X + Constants.VERIFIED_ICON_X_OFFSET, INNER_Y + Constants.VERIFIED_ICON_Y_OFFSET).fill('#ffffff')
-      EXTRA_NAME_PADDING = PADDING + BADGE_MARGIN_RIGHT
+      const flowerStar = badgeContainer.path(Constants.SPECIAL_BADGE)
+        .fill(BADGES.VERIFIED.FLOWERSTAR_COLOR)
+        badgeContainer.path(Constants.VERIFIED_ICON).fill('#ffffff')
+      EXTRA_SERVER_NAME_PADDING = flowerStar.width() + BADGE_MARGIN_RIGHT
     }
-  
+
     // Server Name
-    const serverNameText = canvas.path(whitneySemibold.getD(invite.guild.name, { anchor: 'left top', fontSize: SERVER_NAME_SIZE })).move(INNER_X + EXTRA_NAME_PADDING, INNER_Y).fill('#ffffff')
-  
-    // TODO: Align these correctly @metehus
+    const serverNameText = innerContainer.path(whitneySemibold.getD(invite.guild.name, { anchor: 'top left', fontSize: SERVER_NAME_SIZE }))
+      .fill('#ffffff')
+      .x(EXTRA_SERVER_NAME_PADDING)
+    //serverNameText.y((SERVER_NAME_LINE_HEIGHT - serverNameText.height)/2)
+
+    // innerContainer.rect(innerContainer.width(), innerContainer.height()).fill('#ff0000')
+
+    const presenceContainer = innerContainer.nested()
+      .height(PRESENCE_LINE_HEIGHT)
+      .width(innerContainer.width())
+      .y(SERVER_NAME_LINE_HEIGHT + SERVER_NAME_MARGIN_BOTTOM)
+
     // Online and member counts
-    const presenceCircle = canvas.circle(8).move(INNER_X, INNER_Y + SERVER_NAME_SIZE + 2).fill('#43b581')
-    const presenceText = canvas.path(whitneySemibold.getD(locale.online.replace('{{count}}', invite.approximate_presence_count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")), { anchor: 'left top', fontSize: 14 })).move(presenceCircle.rightmost() + STATUS_CIRCLE_MARGIN_RIGHT, presenceCircle.y()).fill('#b9bbbe')
-    const membersCircle = canvas.circle(8).move(presenceText.x() + presenceText.width() + 8, presenceCircle.y()).fill('#747f8d')
-    const membersText = canvas.path(whitneySemibold.getD(locale.members.replace('{{count}}', invite.approximate_member_count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")), { anchor: 'left top', fontSize: 14 })).move(membersCircle.rightmost() + STATUS_CIRCLE_MARGIN_RIGHT, presenceCircle.y()).fill('#b9bbbe')
-  
+    const presenceCircle = presenceContainer.circle(PRESENCE_DOT_SIZE)
+      .fill('#43b581')
+      .y((PRESENCE_LINE_HEIGHT - PRESENCE_DOT_SIZE)/2)
+    const presenceText = presenceContainer.path(whitneySemibold.getD(locale.online.replace('{{count}}', invite.approximate_presence_count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")), { fontSize: PRESENCE_FONT_SIZE }))
+      .fill('#b9bbbe')
+      .x(PRESENCE_DOT_SIZE + PRESENCE_DOT_MARGIN_RIGHT)
+    presenceText.y((PRESENCE_LINE_HEIGHT - presenceText.height())/2)
+    const membersCircle = presenceContainer.circle(PRESENCE_DOT_SIZE)
+      .fill('#747f8d')
+      .y((PRESENCE_LINE_HEIGHT - PRESENCE_DOT_SIZE)/2)
+      .x(PRESENCE_DOT_SIZE + PRESENCE_DOT_MARGIN_RIGHT + presenceText.width() + PRESENCE_TEXT_MARGIN_RIGHT)
+    const membersText = presenceContainer.path(whitneySemibold.getD(locale.members.replace('{{count}}', invite.approximate_member_count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")), { fontSize: PRESENCE_FONT_SIZE }))
+      .fill('#b9bbbe')
+      .x(PRESENCE_DOT_SIZE + PRESENCE_DOT_MARGIN_RIGHT + presenceText.width() + PRESENCE_TEXT_MARGIN_RIGHT + PRESENCE_DOT_SIZE + PRESENCE_DOT_MARGIN_RIGHT)
+    membersText.y((PRESENCE_LINE_HEIGHT - membersText.height())/2)
+
     return canvas.svg()
   }
 }
