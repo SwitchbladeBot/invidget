@@ -17,7 +17,7 @@ app.get('/svg/:inviteCode', async (req, res) => {
 app.get('/png/:inviteCode', async (req, res) => {
   const hrstart = process.hrtime()
   const inviteSVG = await InviteRenderer.render(req.params.inviteCode, req.query.language, false)
-  const invitePNG = await sharp(Buffer.from(inviteSVG)).png().toBuffer()
+  const invitePNG = await sharp(Buffer.from(inviteSVG)).png({ compressionLevel: 0 }).toBuffer()
   hrend = process.hrtime(hrstart)
   res.setHeader('X-Render-Time', `${hrend[0]}s ${hrend[1] / 1000000}ms`)
   res.setHeader('Content-Type', 'image/png')
