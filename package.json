@@ -7,7 +7,8 @@
     "@svgdotjs/svg.js": "^3.0.16",
     "express": "^4.17.1",
     "node-fetch": "^2.6.0",
-    "svgdom": "^0.1.4"
+    "svgdom": "^0.1.4",
+    "text-to-svg": "^3.1.5"
   },
   "devDependencies": {
     "dotenv": "^8.2.0",
