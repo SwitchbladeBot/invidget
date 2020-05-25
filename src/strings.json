@@ -11,12 +11,6 @@
     "members": "{{count}} Members",
     "button": "Join"
   },
-  "es": {
-    "header": "Te han invitado a unirte a un servidor",
-    "online": "{{count}} en línea",
-    "members": "{{count}} miembros",
-    "button": "Unirse"
-  },
   "hu": {
     "header": "Meghívtak, hogy csatlakozz egy szerverre",
     "online": "{{count}} online",
