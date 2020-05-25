@@ -29,6 +29,12 @@
     "members": "{{count}} Nariai",
     "button": "Prisijungti"
   },
+  "no": {
+    "header": "Du har blitt invitert til å bli med i en server",
+    "online": "{{count}} pålogget",
+    "members": "{{count}} medlemmer",
+    "button": "Bli med"
+  },
   "pt": {
     "header": "Você foi convidado(a) a entrar em um servidor",
     "online": "{{count}} online",
