@@ -10,7 +10,7 @@ SVG invite widgets that look just like the ones on the Discord client!
   - [ ] Code Style
   - [ ] strings.json
     - [ ] JSON lint
-    - [ ] ISO ISO 639-1 language codes
+    - [ ] ISO 639-1 language codes
     - [ ] Required strings exist
 - [x] Generate and serve SVGs
 - [ ] Make the SVG look like the discord invite widget
