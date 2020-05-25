@@ -24,6 +24,8 @@ SVG invite widgets that look just like the ones on the Discord client!
 - [ ] Handle invites from servers with emojis in their names
 - [ ] Handle expired/invalid invites (do the same thing that Discord does)
 - [ ] Handle text overflow
+- [ ] Winston Logging
+- [ ] Sentry Error Reporting
 
 ## Setting up a development environment
 
