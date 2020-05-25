@@ -15,7 +15,7 @@ SVG invite widgets that look just like the ones on the Discord client!
     - [x] Alphabetical Order
 - [x] Generate and serve SVGs
 - [x] Make the SVG look like the discord invite widget
-- [ ] Automatically build and push to Docker Hub through GitHub Actions
+- [x] Automatically build and push to Docker Hub through GitHub Actions
 - [x] Watch for `src` changes and restart automatically for development
 - [ ] Light Theme (`?theme=light`)
 - [ ] Handle invites from servers without icons
