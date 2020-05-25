@@ -4,10 +4,10 @@ const TextToSVG = require('text-to-svg')
 const Discord = require('./Discord.js')
 
 SVG.extend([SVG.Path, SVG.Circle], {
-  rightmost: function() {
+  rightmost: function () {
     return this.x() + this.width()
   },
-  lowermost: function() {
+  lowermost: function () {
     return this.y() + this.height()
   }
 })
@@ -45,9 +45,6 @@ const BUTTON_MARGIN_LEFT = 10
 
 const BADGE_MARGIN_RIGHT = 8
 
-const INNER_X = 2 * PADDING + ICON_SIZE
-const INNER_Y = PADDING + HEADER_FONT_SIZE + 12
-
 const Constants = require('./constants.js')
 const BADGES = {
   VERIFIED: {
@@ -63,16 +60,16 @@ const BADGES = {
 module.exports = class InviteRenderer {
   static async render (inviteCode, language = 'en', animation = true) {
     const invite = await Discord.getInvite(inviteCode)
-    const locale = strings[language] || strings['en']
+    const locale = strings[language] || strings.en
     const window = svgdom.createSVGWindow()
     const document = window.document
     SVG.registerWindow(window, document)
     const canvas = SVG.SVG(document.documentElement)
     canvas.viewbox(0, 0, INVITE_WIDTH, INVITE_HEIGHT).width(INVITE_WIDTH).height(INVITE_HEIGHT)
-  
+
     // Background
     canvas.rect(INVITE_WIDTH, INVITE_HEIGHT).radius(3).fill('#2f3136')
-  
+
     // Main Container
     const mainContainer = canvas.nested()
       .width(INVITE_WIDTH - 2 * PADDING)
@@ -94,26 +91,26 @@ module.exports = class InviteRenderer {
     const squircle = contentContainer.rect(ICON_SIZE, ICON_SIZE).radius(16).fill('#2f3136')
     const iconImage = contentContainer.image(`data:image/${invite.guild.icon.startsWith('a_') ? 'gif' : 'jpg'};base64,${iconBase64}`).size(ICON_SIZE, ICON_SIZE)
     iconImage.clipWith(squircle)
-  
+
     // Join button
     const buttonContainer = contentContainer.nested()
       .width(BUTTON_WIDTH)
       .height(BUTTON_HEIGHT)
-      .move(contentContainer.width() - BUTTON_WIDTH, (contentContainer.height() - BUTTON_HEIGHT)/2)
-    const joinButtonRect = buttonContainer.rect(BUTTON_WIDTH, BUTTON_HEIGHT)
+      .move(contentContainer.width() - BUTTON_WIDTH, (contentContainer.height() - BUTTON_HEIGHT) / 2)
+    buttonContainer.rect(BUTTON_WIDTH, BUTTON_HEIGHT)
       .radius(3)
       .fill('#43b581')
     const joinButtonText = buttonContainer.path(whitneyMedium.getD(locale.button, { fontSize: 14 }))
       .fill('#ffffff')
-    joinButtonText.move((BUTTON_WIDTH - joinButtonText.width())/2, (BUTTON_HEIGHT - joinButtonText.height())/2)
-  
+    joinButtonText.move((BUTTON_WIDTH - joinButtonText.width()) / 2, (BUTTON_HEIGHT - joinButtonText.height()) / 2)
+
     let EXTRA_SERVER_NAME_PADDING = 0
 
     const innerContainer = contentContainer.nested()
       .width(contentContainer.width() - ICON_SIZE - PADDING - BUTTON_WIDTH - BUTTON_MARGIN_LEFT)
       .height(SERVER_NAME_LINE_HEIGHT + SERVER_NAME_MARGIN_BOTTOM + PRESENCE_LINE_HEIGHT)
       .x(ICON_SIZE + PADDING, 0)
-    innerContainer.y((contentContainer.height() - innerContainer.height())/2)
+    innerContainer.y((contentContainer.height() - innerContainer.height()) / 2)
 
     const badgeContainer = innerContainer.nested().y(2)
 
@@ -123,12 +120,12 @@ module.exports = class InviteRenderer {
       badgeContainer.path(Constants.PARTNER_ICON).fill('#ffffff')
       EXTRA_SERVER_NAME_PADDING = flowerStar.width() + BADGE_MARGIN_RIGHT
     }
-  
+
     // Verified Badge
     if (invite.guild.features.includes('VERIFIED')) {
       const flowerStar = badgeContainer.path(Constants.SPECIAL_BADGE)
         .fill(BADGES.VERIFIED.FLOWERSTAR_COLOR)
-        badgeContainer.path(Constants.VERIFIED_ICON).fill('#ffffff')
+      badgeContainer.path(Constants.VERIFIED_ICON).fill('#ffffff')
       EXTRA_SERVER_NAME_PADDING = flowerStar.width() + BADGE_MARGIN_RIGHT
     }
 
@@ -136,7 +133,7 @@ module.exports = class InviteRenderer {
     const serverNameText = innerContainer.path(whitneySemibold.getD(invite.guild.name, { anchor: 'top left', fontSize: SERVER_NAME_SIZE }))
       .fill('#ffffff')
       .x(EXTRA_SERVER_NAME_PADDING)
-    //serverNameText.y((SERVER_NAME_LINE_HEIGHT - serverNameText.height)/2)
+    serverNameText.y((SERVER_NAME_LINE_HEIGHT - serverNameText.height) / 2)
 
     // innerContainer.rect(innerContainer.width(), innerContainer.height()).fill('#ff0000')
 
@@ -146,21 +143,21 @@ module.exports = class InviteRenderer {
       .y(SERVER_NAME_LINE_HEIGHT + SERVER_NAME_MARGIN_BOTTOM)
 
     // Online and member counts
-    const presenceCircle = presenceContainer.circle(PRESENCE_DOT_SIZE)
+    presenceContainer.circle(PRESENCE_DOT_SIZE)
       .fill('#43b581')
-      .y((PRESENCE_LINE_HEIGHT - PRESENCE_DOT_SIZE)/2)
-    const presenceText = presenceContainer.path(whitneySemibold.getD(locale.online.replace('{{count}}', invite.approximate_presence_count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")), { fontSize: PRESENCE_FONT_SIZE }))
+      .y((PRESENCE_LINE_HEIGHT - PRESENCE_DOT_SIZE) / 2)
+    const presenceText = presenceContainer.path(whitneySemibold.getD(locale.online.replace('{{count}}', invite.approximate_presence_count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')), { fontSize: PRESENCE_FONT_SIZE }))
       .fill('#b9bbbe')
       .x(PRESENCE_DOT_SIZE + PRESENCE_DOT_MARGIN_RIGHT)
-    presenceText.y((PRESENCE_LINE_HEIGHT - presenceText.height())/2)
-    const membersCircle = presenceContainer.circle(PRESENCE_DOT_SIZE)
+    presenceText.y((PRESENCE_LINE_HEIGHT - presenceText.height()) / 2)
+    presenceContainer.circle(PRESENCE_DOT_SIZE)
       .fill('#747f8d')
-      .y((PRESENCE_LINE_HEIGHT - PRESENCE_DOT_SIZE)/2)
+      .y((PRESENCE_LINE_HEIGHT - PRESENCE_DOT_SIZE) / 2)
       .x(PRESENCE_DOT_SIZE + PRESENCE_DOT_MARGIN_RIGHT + presenceText.width() + PRESENCE_TEXT_MARGIN_RIGHT)
-    const membersText = presenceContainer.path(whitneySemibold.getD(locale.members.replace('{{count}}', invite.approximate_member_count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")), { fontSize: PRESENCE_FONT_SIZE }))
+    const membersText = presenceContainer.path(whitneySemibold.getD(locale.members.replace('{{count}}', invite.approximate_member_count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')), { fontSize: PRESENCE_FONT_SIZE }))
       .fill('#b9bbbe')
       .x(PRESENCE_DOT_SIZE + PRESENCE_DOT_MARGIN_RIGHT + presenceText.width() + PRESENCE_TEXT_MARGIN_RIGHT + PRESENCE_DOT_SIZE + PRESENCE_DOT_MARGIN_RIGHT)
-    membersText.y((PRESENCE_LINE_HEIGHT - membersText.height())/2)
+    membersText.y((PRESENCE_LINE_HEIGHT - membersText.height()) / 2)
 
     return canvas.svg()
   }
