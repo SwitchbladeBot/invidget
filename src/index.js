@@ -1,9 +1,14 @@
 const express = require('express')
-const app = express()
 const sharp = require('sharp')
 const winston = require('winston')
 const morgan = require('morgan')
+const Sentry = require('@sentry/node')
 const PORT = process.env.PORT || 80
+
+Sentry.init({
+  dsn: process.env.SENTRY_DSN,
+  environment: process.env.NODE_ENV
+})
 
 const InviteRenderer = require('./InviteRenderer.js')
 
@@ -24,6 +29,9 @@ if (process.env.NODE_ENV === 'production') {
   }))
 }
 
+const app = express()
+    
+app.use(Sentry.Handlers.requestHandler())
 app.use(morgan('combined', { stream: { write: message => logger.info(message.trim(), { label: 'HTTP' }) } }))
 
 app.get('/svg/:inviteCode', async (req, res) => {
@@ -48,6 +56,8 @@ app.get('/png/:inviteCode', async (req, res) => {
   res.send(invitePNG)
   logger.info(`Took ${hrend[0]}s ${hrend[1] / 1000000}ms to render ${req.params.inviteCode} as PNG`, { label: 'Renderer' })
 })
+
+app.use(Sentry.Handlers.errorHandler())
 
 app.listen(PORT, () => {
   logger.info(`Listening on port ${PORT}`, { label: 'HTTP' })
