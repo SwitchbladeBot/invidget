@@ -27,7 +27,7 @@ if (process.env.NODE_ENV === 'production') {
 app.use(morgan('combined', { stream: { write: message => logger.info(message.trim(), { label: 'HTTP' }) } }))
 
 app.get('/svg/:inviteCode', async (req, res) => {
-  logger.info(`Rendering ${req.params.inviteCode} as PNG`, { label: 'Renderer' })
+  logger.info(`Rendering ${req.params.inviteCode} as SVG`, { label: 'Renderer' })
   const hrstart = process.hrtime()
   const inviteSVG = await InviteRenderer.render(req.params.inviteCode, req.query.language)
   const hrend = process.hrtime(hrstart)
