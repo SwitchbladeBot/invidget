@@ -30,7 +30,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 const app = express()
-    
+
 app.use(Sentry.Handlers.requestHandler())
 app.use(morgan('combined', { stream: { write: message => logger.info(message.trim(), { label: 'HTTP' }) } }))
 
