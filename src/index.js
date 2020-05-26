@@ -1,16 +1,26 @@
-const express = require('express')
-const sharp = require('sharp')
-const winston = require('winston')
-const morgan = require('morgan')
+// Sentry Error Reporting
 const Sentry = require('@sentry/node')
-const PORT = process.env.PORT || 80
-
 Sentry.init({
   dsn: process.env.SENTRY_DSN,
   environment: process.env.NODE_ENV
 })
 
+
+// DataDog Tracing
+const tracer = require('dd-trace').init({
+  env: process.env.NODE_ENV,
+  logInjection: true
+}).use('winston').use('express')
+
+const winston = require('winston')
+const express = require('express')
+const sharp = require('sharp')
+const morgan = require('morgan')
+const PORT = process.env.PORT || 80
+
 const InviteRenderer = require('./InviteRenderer.js')
+
+const app = express()
 
 const logger = winston.createLogger()
 
@@ -28,8 +38,6 @@ if (process.env.NODE_ENV === 'production') {
     level: process.env.LOGGING_LEVEL || 'silly'
   }))
 }
-
-const app = express()
 
 app.use(Sentry.Handlers.requestHandler())
 app.use(morgan('combined', { stream: { write: message => logger.info(message.trim(), { label: 'HTTP' }) } }))
