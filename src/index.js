@@ -50,5 +50,5 @@ app.get('/png/:inviteCode', async (req, res) => {
 })
 
 app.listen(PORT, () => {
-  logger.info(`Listening on post ${PORT}`, { label: 'HTTP' })
+  logger.info(`Listening on port ${PORT}`, { label: 'HTTP' })
 })
