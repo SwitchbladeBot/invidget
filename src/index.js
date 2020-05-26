@@ -5,9 +5,9 @@ Sentry.init({
   environment: process.env.NODE_ENV
 })
 
-
 // DataDog Tracing
-const tracer = require('dd-trace').init({
+const tracer = require('dd-trace')
+tracer.init({
   env: process.env.NODE_ENV,
   logInjection: true
 }).use('winston').use('express')
