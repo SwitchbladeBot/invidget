@@ -87,10 +87,12 @@ module.exports = class InviteRenderer {
       .move(0, headerContainer.height() + HEADER_MARGIN_BOTTOM)
 
     // Server Icon
-    const iconBase64 = await Discord.getIcon(invite.guild.id, invite.guild.icon)
-    const squircle = contentContainer.rect(ICON_SIZE, ICON_SIZE).radius(16).fill('#2f3136')
-    const iconImage = contentContainer.image(`data:image/${invite.guild.icon.startsWith('a_') ? 'gif' : 'jpg'};base64,${iconBase64}`).size(ICON_SIZE, ICON_SIZE)
-    iconImage.clipWith(squircle)
+    const squircle = contentContainer.rect(ICON_SIZE, ICON_SIZE).radius(16).fill('#36393f')
+    if (invite.guild.icon) {
+      const iconBase64 = await Discord.getIcon(invite.guild.id, invite.guild.icon)
+      const iconImage = contentContainer.image(`data:image/${invite.guild.icon.startsWith('a_') ? 'gif' : 'jpg'};base64,${iconBase64}`).size(ICON_SIZE, ICON_SIZE)
+      iconImage.clipWith(squircle)
+    }
 
     // Join button
     const buttonContainer = contentContainer.nested()
