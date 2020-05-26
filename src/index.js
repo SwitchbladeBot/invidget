@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 80
 
 const InviteRenderer = require('./InviteRenderer.js')
 
-logger = winston.createLogger()
+const logger = winston.createLogger()
 
 if (process.env.NODE_ENV === 'production') {
   logger.add(new winston.transports.Console({ level: process.env.LOGGING_LEVEL || 'silly' }))
@@ -17,7 +17,7 @@ if (process.env.NODE_ENV === 'production') {
       winston.format.colorize(),
       winston.format.timestamp(),
       winston.format.printf(
-        info => `${info.timestamp} ${info.level}${info.label ? ` [${info.label || ''}]`: ''}: ${info.message}`
+        info => `${info.timestamp} ${info.level}${info.label ? ` [${info.label || ''}]` : ''}: ${info.message}`
       )
     ),
     level: process.env.LOGGING_LEVEL || 'silly'
