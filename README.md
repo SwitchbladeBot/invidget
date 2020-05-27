@@ -2,7 +2,7 @@
 
 SVG invite widgets that look just like the ones on the Discord client!
 
-![Widget Preview](https://camo.githubusercontent.com/1bedc6155f548ad05dc36165a8cc22fb2e932bf1/687474703a2f2f34352e33332e32372e3230383a383038302f7376672f324642387744473f6c616e67756167653d656e)
+![Widget Preview](http://invidget.switchblade.xyz/svg/2FB8wDG)
 
 **⚠ THIS PROJECT IS WIP!**
 
