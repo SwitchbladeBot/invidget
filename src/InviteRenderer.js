@@ -134,8 +134,6 @@ module.exports = class InviteRenderer {
       .x(EXTRA_SERVER_NAME_PADDING)
     serverNameText.y((SERVER_NAME_LINE_HEIGHT - serverNameText.height) / 2)
 
-    // innerContainer.rect(innerContainer.width(), innerContainer.height()).fill('#ff0000')
-
     const presenceContainer = innerContainer.nested()
       .height(PRESENCE_LINE_HEIGHT)
       .width(innerContainer.width())
