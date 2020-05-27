@@ -9,7 +9,7 @@ module.exports = class Discord {
     return fetch(iconUrl).then(res => res.buffer()).then(buffer => buffer.toString('base64'))
   }
 
-  static getIconUrl(guildId, iconId) {
+  static getIconUrl (guildId, iconId) {
     return `https://cdn.discordapp.com/icons/${guildId}/${iconId}${iconId.startsWith('a_') ? '.gif' : '.jpg'}`
   }
 }
