@@ -119,20 +119,14 @@ module.exports = class InviteRenderer {
 
     const badgeContainer = innerContainer.nested().y(2)
 
-    // Partner Badge
-    if (invite.guild.features.includes('PARTNERED')) {
-      const flowerStar = badgeContainer.path(Constants.SPECIAL_BADGE).fill(BADGES.PARTNERED.FLOWERSTAR_COLOR)
-      badgeContainer.path(Constants.PARTNER_ICON).fill('#ffffff')
-      EXTRA_SERVER_NAME_PADDING = flowerStar.width() + BADGE_MARGIN_RIGHT
-    }
-
-    // Verified Badge
-    if (invite.guild.features.includes('VERIFIED')) {
-      const flowerStar = badgeContainer.path(Constants.SPECIAL_BADGE)
-        .fill(BADGES.VERIFIED.FLOWERSTAR_COLOR)
-      badgeContainer.path(Constants.VERIFIED_ICON).fill('#ffffff')
-      EXTRA_SERVER_NAME_PADDING = flowerStar.width() + BADGE_MARGIN_RIGHT
-    }
+    // Feature Badges
+    invite.guild.features.forEach(f => {
+      if (BADGES[f]) {
+        const flowerStar = badgeContainer.path(Constants.SPECIAL_BADGE).fill(BADGES[f].FLOWERSTAR_COLOR)
+        badgeContainer.path(BADGES[f].ICON).fill('#ffffff')
+        EXTRA_SERVER_NAME_PADDING = flowerStar.width() + BADGE_MARGIN_RIGHT
+      }
+    })
 
     // Server Name
     const serverNameText = innerContainer.path(whitneySemibold.getD(invite.guild.name, { anchor: 'top left', fontSize: SERVER_NAME_SIZE }))
