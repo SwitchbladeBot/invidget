@@ -99,6 +99,9 @@ module.exports = class InviteRenderer {
       .width(BUTTON_WIDTH)
       .height(BUTTON_HEIGHT)
       .move(contentContainer.width() - BUTTON_WIDTH, (contentContainer.height() - BUTTON_HEIGHT) / 2)
+      .linkTo(link => {
+        link.to(`https://discord.gg/${inviteCode}`).target('_blank')
+      })
     buttonContainer.rect(BUTTON_WIDTH, BUTTON_HEIGHT)
       .radius(3)
       .fill('#43b581')
