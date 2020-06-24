@@ -46,7 +46,6 @@ app.get('/:inviteCode', async (req, res) => {
   const inviteSVG = await InviteRenderer.render(req.params.inviteCode, req.query)
   res.setHeader('Content-Type', 'image/svg+xml')
   res.send(inviteSVG)
-  break
 })
 
 app.use(Sentry.Handlers.errorHandler())
