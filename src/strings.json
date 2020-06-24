@@ -17,6 +17,12 @@
     "members": "{{count}} tag",
     "button": "Csatlakozás"
   },
+  "ja": {
+    "header": "サーバーへの招待を送信しました",
+    "online": "{{count}}人がオンライン",
+    "members": "{{count}}人",
+    "button": "参加しました"
+  },
   "lt": {
     "header": "Tu buvai pakviestas prisijungti prie serverio",
     "online": "{{count}} prisijungęs",
