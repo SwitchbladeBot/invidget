@@ -99,7 +99,7 @@ module.exports = class InviteRenderer {
 
     const themeColors = {
       ...COMMON_COLORS,
-      ...(THEMES[theme] || THEMES['dark'])
+      ...(THEMES[theme] || THEMES.dark)
     }
 
     // Background

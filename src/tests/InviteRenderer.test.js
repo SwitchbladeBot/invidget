@@ -1,3 +1,5 @@
+/* global fetch */
+
 const InviteRenderer = require('../InviteRenderer.js')
 const constants = require('../constants.js')
 

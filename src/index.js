@@ -48,15 +48,17 @@ app.get('/:fileFormat/:inviteCode', async (req, res) => {
   logger.info(`Rendering ${req.params.inviteCode} as ${req.params.fileFormat}`, { label: 'Renderer' })
   const inviteSVG = await InviteRenderer.render(req.params.inviteCode, req.query)
   switch (req.params.fileFormat) {
-    case 'svg':
+    case 'svg': {
       res.setHeader('Content-Type', 'image/svg+xml')
       res.send(inviteSVG)
       break
-    case 'png':
+    }
+    case 'png': {
       const invitePNG = await sharp(Buffer.from(inviteSVG)).png({ compressionLevel: 0 }).toBuffer()
       res.setHeader('Content-Type', 'image/png')
       res.send(invitePNG)
       break
+    }
   }
 })
 
