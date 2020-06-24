@@ -41,18 +41,12 @@ if (process.env.NODE_ENV === 'production') {
 app.use(Sentry.Handlers.requestHandler())
 app.use(morgan('combined', { stream: { write: message => logger.info(message.trim(), { label: 'HTTP' }) } }))
 
-const validFormats = ['png']
-app.get('/:fileFormat/:inviteCode', async (req, res) => {
-  if (!validFormats.includes(req.params.fileFormat)) return res.sendStatus(404)
+app.get('/:inviteCode', async (req, res) => {
   logger.info(`Rendering ${req.params.inviteCode} as ${req.params.fileFormat}`, { label: 'Renderer' })
   const inviteSVG = await InviteRenderer.render(req.params.inviteCode, req.query)
-  switch (req.params.fileFormat) {
-    case 'svg': {
-      res.setHeader('Content-Type', 'image/svg+xml')
-      res.send(inviteSVG)
-      break
-    }
-  }
+  res.setHeader('Content-Type', 'image/svg+xml')
+  res.send(inviteSVG)
+  break
 })
 
 app.use(Sentry.Handlers.errorHandler())
