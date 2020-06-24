@@ -19,6 +19,7 @@
     "dotenv": "^8.2.0",
     "iso-639-1": "^2.1.3",
     "jest": "^26.0.1",
+    "jest-fetch-mock": "^3.0.3",
     "nodemon": "^2.0.4",
     "standard": "^14.3.4"
   },
@@ -35,6 +36,13 @@
   "standard": {
     "env": [
       "jest"
+    ]
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "automock": false,
+    "setupFiles": [
+      "./src/setupJest.js"
     ]
   },
   "author": "Switchblade Team",

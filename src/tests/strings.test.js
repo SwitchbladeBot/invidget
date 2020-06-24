@@ -1,4 +1,4 @@
-const strings = require('./strings.json')
+const strings = require('../strings.json')
 const ISO6391 = require('iso-639-1')
 
 test('languages should be in alphabetical order', () => {
