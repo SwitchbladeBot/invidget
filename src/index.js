@@ -14,7 +14,6 @@ tracer.init({
 
 const winston = require('winston')
 const express = require('express')
-const sharp = require('sharp')
 const morgan = require('morgan')
 const PORT = process.env.PORT || 80
 
@@ -42,7 +41,7 @@ if (process.env.NODE_ENV === 'production') {
 app.use(Sentry.Handlers.requestHandler())
 app.use(morgan('combined', { stream: { write: message => logger.info(message.trim(), { label: 'HTTP' }) } }))
 
-const validFormats = ['svg', 'png']
+const validFormats = ['png']
 app.get('/:fileFormat/:inviteCode', async (req, res) => {
   if (!validFormats.includes(req.params.fileFormat)) return res.sendStatus(404)
   logger.info(`Rendering ${req.params.inviteCode} as ${req.params.fileFormat}`, { label: 'Renderer' })
@@ -51,12 +50,6 @@ app.get('/:fileFormat/:inviteCode', async (req, res) => {
     case 'svg': {
       res.setHeader('Content-Type', 'image/svg+xml')
       res.send(inviteSVG)
-      break
-    }
-    case 'png': {
-      const invitePNG = await sharp(Buffer.from(inviteSVG)).png({ compressionLevel: 0 }).toBuffer()
-      res.setHeader('Content-Type', 'image/png')
-      res.send(invitePNG)
       break
     }
   }
