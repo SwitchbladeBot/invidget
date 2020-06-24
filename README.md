@@ -2,7 +2,19 @@
 
 SVG invite widgets that look just like the ones on the Discord client!
 
-![Widget Preview](http://invidget.switchblade.xyz/svg/2FB8wDG)
+## Preview
+
+### Dark theme (default)
+
+![Dark theme preview](http://invidget.switchblade.xyz/2FB8wDG)
+
+### Light theme `?theme=light`
+
+![Light theme preview](http://invidget.switchblade.xyz/2FB8wDG?theme=light)
+
+### Different language `?language=pt`
+
+![Light theme preview](http://invidget.switchblade.xyz/2FB8wDG?language=pt)
 
 **⚠ THIS PROJECT IS WIP!**
 
