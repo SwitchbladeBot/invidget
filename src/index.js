@@ -42,27 +42,22 @@ if (process.env.NODE_ENV === 'production') {
 app.use(Sentry.Handlers.requestHandler())
 app.use(morgan('combined', { stream: { write: message => logger.info(message.trim(), { label: 'HTTP' }) } }))
 
-app.get('/svg/:inviteCode', async (req, res) => {
-  logger.info(`Rendering ${req.params.inviteCode} as SVG`, { label: 'Renderer' })
-  const hrstart = process.hrtime()
-  const inviteSVG = await InviteRenderer.render(req.params.inviteCode, req.query.language)
-  const hrend = process.hrtime(hrstart)
-  res.setHeader('X-Render-Time', `${hrend[0]}s ${hrend[1] / 1000000}ms`)
-  res.setHeader('Content-Type', 'image/svg+xml')
-  res.send(inviteSVG)
-  logger.info(`Took ${hrend[0]}s ${hrend[1] / 1000000}ms to render ${req.params.inviteCode} as SVG`, { label: 'Renderer' })
-})
-
-app.get('/png/:inviteCode', async (req, res) => {
-  logger.info(`Rendering ${req.params.inviteCode} as PNG`, { label: 'Renderer' })
-  const hrstart = process.hrtime()
-  const inviteSVG = await InviteRenderer.render(req.params.inviteCode, req.query.language, false)
-  const invitePNG = await sharp(Buffer.from(inviteSVG)).png({ compressionLevel: 0 }).toBuffer()
-  const hrend = process.hrtime(hrstart)
-  res.setHeader('X-Render-Time', `${hrend[0]}s ${hrend[1] / 1000000}ms`)
-  res.setHeader('Content-Type', 'image/png')
-  res.send(invitePNG)
-  logger.info(`Took ${hrend[0]}s ${hrend[1] / 1000000}ms to render ${req.params.inviteCode} as PNG`, { label: 'Renderer' })
+const validFormats = ['svg', 'png']
+app.get('/:fileFormat/:inviteCode', async (req, res) => {
+  if (!validFormats.includes(req.params.fileFormat)) return res.sendStatus(404)
+  logger.info(`Rendering ${req.params.inviteCode} as ${req.params.fileFormat}`, { label: 'Renderer' })
+  const inviteSVG = await InviteRenderer.render(req.params.inviteCode, req.query)
+  switch (req.params.fileFormat) {
+    case 'svg':
+      res.setHeader('Content-Type', 'image/svg+xml')
+      res.send(inviteSVG)
+      break
+    case 'png':
+      const invitePNG = await sharp(Buffer.from(inviteSVG)).png({ compressionLevel: 0 }).toBuffer()
+      res.setHeader('Content-Type', 'image/png')
+      res.send(invitePNG)
+      break
+  }
 })
 
 app.use(Sentry.Handlers.errorHandler())
