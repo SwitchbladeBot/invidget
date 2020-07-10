@@ -2,6 +2,11 @@
 
 SVG invite widgets that look just like the ones on the Discord client!
 
+### Base URL:
+```
+http://invidget.switchblade.xyz/YOUR_INVITE_CODE
+```
+
 ## Preview
 
 ### Dark theme (default)
