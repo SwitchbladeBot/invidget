@@ -71,8 +71,6 @@ http://invidget.switchblade.xyz/YOUR_INVITE_CODE
 
 ## Sponsors
 
-Sponsors are organizations and companies that contribute to our projects with money. They get their logo with a link to their website on our READMEs! [Click here and become a sponsor today!][sponsors-url]
-
 <a href="https://opencollective.com/switchblade/sponsor/0/website?requireActive=false" target="_blank"><img src="https://opencollective.com/switchblade/sponsor/0/avatar.svg?requireActive=false"></a>
 <a href="https://opencollective.com/switchblade/sponsor/1/website?requireActive=false" target="_blank"><img src="https://opencollective.com/switchblade/sponsor/1/avatar.svg?requireActive=false"></a>
 <a href="https://opencollective.com/switchblade/sponsor/2/website?requireActive=false" target="_blank"><img src="https://opencollective.com/switchblade/sponsor/2/avatar.svg?requireActive=false"></a>
@@ -86,8 +84,6 @@ Sponsors are organizations and companies that contribute to our projects with mo
 <a href="https://opencollective.com/switchblade/sponsor/10/website?requireActive=false" target="_blank"><img src="https://opencollective.com/switchblade/sponsor/10/avatar.svg?requireActive=false"></a>
 
 ## Backers
-
-Backers are the people who contribute to our projects monetarily. They get their image with a link to their website on our READMEs, an awesome badge on their Switchblade profile and a role that grants exclusive access to some channels in our discord server. [Click here and become a backer today!][backers-url]
 
 <a href="https://opencollective.com/switchblade/backer/0/website?requireActive=false" target="_blank"><img src="https://opencollective.com/switchblade/backer/0/avatar.svg?requireActive=false"></a>
 <a href="https://opencollective.com/switchblade/backer/1/website?requireActive=false" target="_blank"><img src="https://opencollective.com/switchblade/backer/1/avatar.svg?requireActive=false"></a>
