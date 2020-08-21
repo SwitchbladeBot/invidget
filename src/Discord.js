@@ -1,8 +1,15 @@
 const fetch = require('node-fetch')
 
+const API_BASE_URL = 'https://discordapp.com/api/v6'
+const CDN_BASE_URL = 'https://cdn.discordapp.com'
+
 module.exports = class Discord {
+  static getWidget (guildId) {
+    return fetch(`${API_BASE_URL}/guilds/${guildId}/widget.json`).then(res => res.json())
+  }
+
   static getInvite (inviteCode) {
-    return fetch(`https://discordapp.com/api/v6/invites/${inviteCode}?with_counts=true`).then(res => res.json())
+    return fetch(`${API_BASE_URL}/invites/${inviteCode}?with_counts=true`).then(res => res.json())
   }
 
   static fetchIcon (iconUrl) {
@@ -10,6 +17,6 @@ module.exports = class Discord {
   }
 
   static getIconUrl (guildId, iconId) {
-    return `https://cdn.discordapp.com/icons/${guildId}/${iconId}${iconId.startsWith('a_') ? '.gif' : '.jpg'}`
+    return `${CDN_BASE_URL}/icons/${guildId}/${iconId}${iconId.startsWith('a_') ? '.gif' : '.jpg'}`
   }
 }

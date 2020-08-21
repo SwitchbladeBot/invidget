@@ -18,6 +18,7 @@ const morgan = require('morgan')
 const PORT = process.env.PORT || 80
 
 const InviteRenderer = require('./InviteRenderer.js')
+const InviteResolver = require('./InviteResolver')
 
 const app = express()
 
@@ -41,9 +42,11 @@ if (process.env.NODE_ENV === 'production') {
 app.use(Sentry.Handlers.requestHandler())
 app.use(morgan('combined', { stream: { write: message => logger.info(message.trim(), { label: 'HTTP' }) } }))
 
-app.get('/:inviteCode', async (req, res) => {
-  logger.info(`Rendering ${req.params.inviteCode} as ${req.params.fileFormat}`, { label: 'Renderer' })
-  const inviteSVG = await InviteRenderer.render(req.params.inviteCode, req.query)
+app.get('/:query', async (req, res) => {
+  logger.info(`Got request to render ${req.params.query}`)
+  const inviteCode = await InviteResolver.resolve(req.params.query)
+  logger.info(`Rendering ${inviteCode}`, { label: 'Renderer' })
+  const inviteSVG = await InviteRenderer.render(inviteCode, req.query)
   res.setHeader('Content-Type', 'image/svg+xml')
   res.send(inviteSVG)
 })
