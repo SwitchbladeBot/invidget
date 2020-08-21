@@ -15,8 +15,13 @@
 
 ### Base URL:
 ```
-http://invidget.switchblade.xyz/YOUR_INVITE_CODE
+http://invidget.switchblade.xyz/YOUR_INVITE_CODE_OR_SERVER_ID
 ```
+
+#### Notes
+
+- **When using an invite code**, make sure that your invite is set to never expire, otherwise your widget will break after some time.
+- **When using a server ID**, make sure to enable the Server Widget by going to <kbd><kbd>Server Settings</kbd> ⇒ <kbd>Widget</kbd></kbd> and then checking <kbd>Enable Server Widget</kbd>.
 
 ## Preview
 
@@ -33,27 +38,6 @@ http://invidget.switchblade.xyz/YOUR_INVITE_CODE
 ![Light theme preview](http://invidget.switchblade.xyz/2FB8wDG?language=pt)
 
 **⚠ THIS PROJECT IS A WIP!**
-
-## Planned features
-
-- [x] Unit Tests
-  - [x] Code Style
-  - [x] strings.json
-    - [x] ISO 639-1 language codes
-    - [x] Alphabetical Order
-- [x] Generate and serve SVGs
-- [x] Make the SVG look like the discord invite widget
-- [x] Automatically build and push to Docker Hub through GitHub Actions
-- [x] Watch for `src` changes and restart automatically for development
-- [x] Light Theme (`?theme=light`)
-- [x] Winston Logging
-- [x] Sentry Error Reporting
-- [x] Handle invites from servers without icons
-  - [ ] Render the acronym
-- [ ] Redis Caching
-- [ ] Handle invites from servers with emojis in their names
-- [ ] Handle expired/invalid invites (do the same thing that Discord does)
-- [ ] Handle text overflow
 
 ## Setting up a development environment
 
