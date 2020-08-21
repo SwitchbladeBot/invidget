@@ -15,4 +15,4 @@ jobs:
           env:
             DOCKERHUB_USERNAME: ${{ secrets.DOCKER_USERNAME }}
             DOCKERHUB_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-            DOCKERHUB_REPOSITORY: peterevans/dockerhub-description
+            DOCKERHUB_REPOSITORY: switchbladebot/invidget
