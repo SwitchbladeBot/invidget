@@ -1,4 +1,4 @@
-  {
+{
   "da": {
     "header": "Du er blevet inviteret til at tilslutte dig en server",
     "online": "{{count}} online",
@@ -40,5 +40,17 @@
     "online": "{{count}} online",
     "members": "{{count}} Membros",
     "button": "Juntar-se"
+  },
+  "ru": {
+    "header": "Вы были приглашены присоединиться к серверу",
+    "online": "{{count}} в сети",
+    "members": "{{count}} участников",
+    "button": "Вступить"
+  },
+  "ua": {
+    "header": "Тебе запросили приєднатися до сервера",
+    "online": "{{count}} у мережі",
+    "members": "{{count}} учасників",
+    "button": "Приєднатися"
   }
 }
