@@ -21,7 +21,7 @@ http://invidget.switchblade.xyz/YOUR_INVITE_CODE_OR_SERVER_ID
 #### Notes
 
 - **When using an invite code**, make sure that your invite is set to never expire, otherwise your widget will break after some time.
-- **When using a server ID**, make sure to enable the Server Widget by going to <kbd><kbd>Server Settings</kbd> ⇒ <kbd>Widget</kbd></kbd> and then checking <kbd>Enable Server Widget</kbd>.
+- **When using a server ID**, make sure to enable the Server Widget by going to <kbd><kbd>Server Settings</kbd> ⇒ <kbd>Widget</kbd></kbd>, checking <kbd>Enable Server Widget</kbd> and selecting an <kbd>Invite Channel</kbd>.
 
 ## Preview
 
