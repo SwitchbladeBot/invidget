@@ -52,5 +52,11 @@
     "online": "{{count}} у мережі",
     "members": "{{count}} учасників",
     "button": "Приєднатися"
+  },
+  "de": {
+    "header": "Du wurdest eingeladen, einem Server beizutreten",
+    "online": "{{count}} online",
+    "members": "{{count}} Mitglieder",
+    "button": "Beitreten"
   }
 }
