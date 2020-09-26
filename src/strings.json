@@ -5,6 +5,12 @@
     "members": "{{count}} medlemmer",
     "button": "Tilslut"
   },
+    "de": {
+    "header": "Du wurdest eingeladen, einem Server beizutreten",
+    "online": "{{count}} online",
+    "members": "{{count}} Mitglieder",
+    "button": "Beitreten"
+  },
   "en": {
     "header": "You've been invited to join a server",
     "online": "{{count}} Online",
@@ -52,11 +58,5 @@
     "online": "{{count}} у мережі",
     "members": "{{count}} учасників",
     "button": "Приєднатися"
-  },
-  "de": {
-    "header": "Du wurdest eingeladen, einem Server beizutreten",
-    "online": "{{count}} online",
-    "members": "{{count}} Mitglieder",
-    "button": "Beitreten"
   }
 }
