@@ -58,11 +58,11 @@ const COMMON_COLORS = {
   members: '#747f8d',
   badges: {
     PARTNERED: {
-      flowerStar: '#4087ed',
+      flowerStar: '#7289da',
       icon: '#ffffff'
     },
     VERIFIED: {
-      flowerStar: '#7289da',
+      flowerStar: '#43b581',
       icon: '#ffffff'
     }
   }
