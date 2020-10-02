@@ -62,7 +62,7 @@ const COMMON_COLORS = {
       icon: '#ffffff'
     },
     VERIFIED: {
-      flowerStar: '#7289da',
+      flowerStar: '#43b581',
       icon: '#ffffff'
     }
   }
