@@ -54,7 +54,7 @@
     "button": "Вступить"
   },
   "tr": {
-    "header": "BİR SUNUCUYA KATILMAK İÇİN DAVET EDİLDİN",
+    "header": "Bir sunucuya katılmak için davet edildin",
     "online": "{{count}} Çevrimiçi",
     "members": "{{count}} Üye",
     "button": "Katıl"
