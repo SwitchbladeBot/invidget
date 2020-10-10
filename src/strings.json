@@ -53,6 +53,12 @@
     "members": "{{count}} участников",
     "button": "Вступить"
   },
+  "tr": {
+    "header": "BİR SUNUCUYA KATILMAK İÇİN DAVET EDİLDİN",
+    "online": "{{count}} Çevrimiçi",
+    "members": "{{count}} Üye",
+    "button": "Katıl"
+  },
   "uk": {
     "header": "Тебе запросили приєднатися до сервера",
     "online": "{{count}} у мережі",
