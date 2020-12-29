@@ -17,6 +17,12 @@
     "members": "{{count}} Members",
     "button": "Join"
   },
+  "fi": {
+    "header": "Sinut on kutsuttu palvelimelle",
+    "online": "{{count}} paikalla",
+    "members": "{{count}} jäsentä",
+    "button": "Liity"
+  },
   "hu": {
     "header": "Meghívtak, hogy csatlakozz egy szerverre",
     "online": "{{count}} online",
