@@ -51,10 +51,12 @@ const BADGES = {
   PARTNERED: Constants.PARTNER_ICON
 }
 
+//old green color: #43b581
+
 const COMMON_COLORS = {
-  joinButtonBackground: '#43b581',
+  joinButtonBackground: '#3ba55c',
   joinButtonText: '#ffffff',
-  online: '#43b581',
+  online: '#3ba55c',
   members: '#747f8d',
   badges: {
     PARTNERED: {
@@ -62,7 +64,7 @@ const COMMON_COLORS = {
       icon: '#ffffff'
     },
     VERIFIED: {
-      flowerStar: '#43b581',
+      flowerStar: '#3ba55c',
       icon: '#ffffff'
     }
   }
