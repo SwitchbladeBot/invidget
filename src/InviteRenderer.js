@@ -51,7 +51,7 @@ const BADGES = {
   PARTNERED: Constants.PARTNER_ICON
 }
 
-//old green color: #43b581
+// Old green color: #43b581
 
 const COMMON_COLORS = {
   joinButtonBackground: '#3ba55c',
