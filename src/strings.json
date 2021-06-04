@@ -17,6 +17,12 @@
     "members": "{{count}} Members",
     "button": "Join"
   },
+  "es": {
+    "header": "Has sido invitado a unirte a un servidor",
+    "online": "{{count}} Online",
+    "members": "{{count}} Miembros",
+    "button": "Unirse"
+  },
   "fi": {
     "header": "Sinut on kutsuttu palvelimelle",
     "online": "{{count}} paikalla",
@@ -70,11 +76,5 @@
     "online": "{{count}} у мережі",
     "members": "{{count}} учасників",
     "button": "Приєднатися"
-  },
-  "es": {
-    "header": "Has sido invitado a unirte a un servidor",
-    "online": "{{count}} Online",
-    "members": "{{count}} Miembros",
-    "button": "Unirse"
   }
 }
