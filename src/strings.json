@@ -70,5 +70,11 @@
     "online": "{{count}} у мережі",
     "members": "{{count}} учасників",
     "button": "Приєднатися"
+  },
+  "es": {
+    "header": "Has sido invitado a unirte a un servidor",
+    "online": "{{count}} Online",
+    "members": "{{count}} Miembros",
+    "button": "Unirse"
   }
 }
