@@ -50,7 +50,7 @@ app.get('/:query', async (req, res) => {
   logger.info(`Rendering ${inviteCode}`, { label: 'Renderer' })
   const inviteSVG = await InviteRenderer.render(inviteCode, req.query)
 
-  switch (req.query.format) {
+  switch (req.query.format.toLowerCase()) {
     case 'png':
       sharp(Buffer.from(inviteSVG))
         .toFormat('png')
