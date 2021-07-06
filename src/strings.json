@@ -42,7 +42,7 @@
     "button": "参加しました"
   },
   "ko": {
-    "header": "서버에 초대받았어요.",
+    "header": "서버에 초대받았어요",
     "online": "{{count}}명 온라인",
     "members": "멤버 {{count}}명",
     "button": "참가"
