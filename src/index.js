@@ -24,6 +24,8 @@ const app = express()
 
 const logger = winston.createLogger()
 
+const sharp = require('sharp')
+
 if (process.env.NODE_ENV === 'production') {
   logger.add(new winston.transports.Console({ level: process.env.LOGGING_LEVEL || 'silly' }))
 } else {
@@ -47,8 +49,22 @@ app.get('/:query', async (req, res) => {
   const inviteCode = await InviteResolver.resolve(req.params.query)
   logger.info(`Rendering ${inviteCode}`, { label: 'Renderer' })
   const inviteSVG = await InviteRenderer.render(inviteCode, req.query)
-  res.setHeader('Content-Type', 'image/svg+xml')
-  res.send(inviteSVG)
+
+  switch (req.query.format.toLowerCase()) {
+    case 'png':
+      sharp(Buffer.from(inviteSVG))
+        .toFormat('png')
+        .toBuffer()
+        .then(buffer => {
+          res.setHeader('Content-Type', 'image/png')
+          res.send(buffer)
+        })
+      break
+    default:
+      res.setHeader('Content-Type', 'image/svg+xml')
+      res.send(inviteSVG)
+      break
+  }
 })
 
 app.use(Sentry.Handlers.errorHandler())
