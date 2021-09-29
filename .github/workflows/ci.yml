@@ -9,10 +9,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@master
+        with:
+                annotate: true
       - name: Standard
         run: npx standard
-        with:
-          annotate: true
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
   test:
