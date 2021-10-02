@@ -67,10 +67,6 @@ const COMMON_COLORS = {
     VERIFIED: {
       flowerStar: '#3ba55c',
       icon: '#ffffff'
-    },
-    HUB: {
-      circle: '#565b63',
-      icon: '#ffffff'
     }
   }
 }
@@ -167,7 +163,7 @@ module.exports = class InviteRenderer {
         .circle(16)
         .fill(themeColors.badges.VERIFIED.flowerStar)
       for (const path of BADGES.HUB)
-        badgeContainer.path(path).fill(themeColors.badges.HUB.icon)
+        badgeContainer.path(path).fill(themeColors.badges.VERIFIED.icon)
       EXTRA_SERVER_NAME_PADDING = circle.width() + BADGE_MARGIN_RIGHT;
     } else if (invite.guild.features.includes('VERIFIED')) {
       const flowerStar = badgeContainer
@@ -185,13 +181,6 @@ module.exports = class InviteRenderer {
         .path(BADGES.PARTNERED)
         .fill(themeColors.badges.PARTNERED.icon)
       EXTRA_SERVER_NAME_PADDING = flowerStar.width() + BADGE_MARGIN_RIGHT;
-    } else if (invite.guild.features.includes('HUB')) {
-      const circle = badgeContainer
-        .circle(16)
-        .fill(themeColors.badges.HUB.circle)
-      for (const path of BADGES.HUB)
-        badgeContainer.path(path).fill(themeColors.badges.HUB.icon)
-      EXTRA_SERVER_NAME_PADDING = circle.width() + BADGE_MARGIN_RIGHT;
     }
 
     // Server Name
