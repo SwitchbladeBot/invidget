@@ -48,7 +48,8 @@ const BADGE_MARGIN_RIGHT = 8
 const Constants = require('./constants.js')
 const BADGES = {
   VERIFIED: Constants.VERIFIED_ICON,
-  PARTNERED: Constants.PARTNER_ICON
+  PARTNERED: Constants.PARTNER_ICON,
+  HUB: Constants.HUB_ICON
 }
 
 // Old green color: #43b581
@@ -65,6 +66,10 @@ const COMMON_COLORS = {
     },
     VERIFIED: {
       flowerStar: '#3ba55c',
+      icon: '#ffffff'
+    },
+    HUB: {
+      circle: '#565b63',
       icon: '#ffffff'
     }
   }
@@ -157,13 +162,37 @@ module.exports = class InviteRenderer {
     const badgeContainer = innerContainer.nested().y(2)
 
     // Feature Badges
-    invite.guild.features.forEach(f => {
-      if (BADGES[f]) {
-        const flowerStar = badgeContainer.path(Constants.SPECIAL_BADGE).fill(themeColors.badges[f].flowerStar)
-        badgeContainer.path(BADGES[f]).fill(themeColors.badges[f].icon)
-        EXTRA_SERVER_NAME_PADDING = flowerStar.width() + BADGE_MARGIN_RIGHT
-      }
-    })
+    if (invite.guild.features.includes('VERIFIED') && invite.guild.features.includes('HUB')) {
+      const circle = badgeContainer
+        .circle(16)
+        .fill(themeColors.badges.VERIFIED.flowerStar)
+      for (const path of BADGES.HUB)
+        badgeContainer.path(path).fill(themeColors.badges.HUB.icon)
+      EXTRA_SERVER_NAME_PADDING = circle.width() + BADGE_MARGIN_RIGHT;
+    } else if (invite.guild.features.includes('VERIFIED')) {
+      const flowerStar = badgeContainer
+        .path(Constants.SPECIAL_BADGE)
+        .fill(themeColors.badges.VERIFIED.flowerStar)
+      badgeContainer
+        .path(BADGES.VERIFIED)
+        .fill(themeColors.badges.VERIFIED.icon)
+      EXTRA_SERVER_NAME_PADDING = flowerStar.width() + BADGE_MARGIN_RIGHT;
+    } else if (invite.guild.features.includes('PARTNERED')) {
+      const flowerStar = badgeContainer
+        .path(Constants.SPECIAL_BADGE)
+        .fill(themeColors.badges.PARTNERED.flowerStar)
+      badgeContainer
+        .path(BADGES.PARTNERED)
+        .fill(themeColors.badges.PARTNERED.icon)
+      EXTRA_SERVER_NAME_PADDING = flowerStar.width() + BADGE_MARGIN_RIGHT;
+    } else if (invite.guild.features.includes('HUB')) {
+      const circle = badgeContainer
+        .circle(16)
+        .fill(themeColors.badges.HUB.circle)
+      for (const path of BADGES.HUB)
+        badgeContainer.path(path).fill(themeColors.badges.HUB.icon)
+      EXTRA_SERVER_NAME_PADDING = circle.width() + BADGE_MARGIN_RIGHT;
+    }
 
     // Server Name
     const serverNameText = innerContainer.path(whitneySemibold.getD(invite.guild.name, { anchor: 'top left', fontSize: SERVER_NAME_SIZE }))
