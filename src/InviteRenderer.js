@@ -120,7 +120,7 @@ module.exports = class InviteRenderer {
 
     // Header
     const headerContainer = mainContainer.nested().width(mainContainer.width()).height(HEADER_LINE_HEIGHT)
-    headerContainer.path(whitneyBold.getD(locale.header.toUpperCase(), { anchor: 'top left', fontSize: HEADER_FONT_SIZE })).fill(themeColors.header)
+    headerContainer.path(whitneyBold.getD((invite.guild.features.includes('HUB') ? locale.header_hub : locale.header).toUpperCase(), { anchor: 'top left', fontSize: HEADER_FONT_SIZE })).fill(themeColors.header)
 
     // Content Container
     const contentContainer = mainContainer.nested()
