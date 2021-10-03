@@ -49,7 +49,7 @@ app.get('/:query', async (req, res) => {
   const inviteSVG = await InviteRenderer.render(inviteCode, req.query)
   if (typeof inviteSVG === "undefined") {
     logger.error(`Failed to render ${inviteCode}, invite doesn't exist or has no guild`, { label: 'Renderer' })
-    res.sendStatus(404)
+    return res.sendStatus(404)
   }
   res.setHeader('Content-Type', 'image/svg+xml')
   res.send(inviteSVG)
