@@ -1,78 +1,91 @@
 {
   "da": {
     "header": "Du er blevet inviteret til at tilslutte dig en server",
+    "header_hub": "Du er blevet inviteret til at joine en hub",
     "online": "{{count}} online",
     "members": "{{count}} medlemmer",
     "button": "Tilslut"
   },
-    "de": {
+  "de": {
     "header": "Du wurdest eingeladen, einem Server beizutreten",
+    "header_hub": "Du wurdest eingeladen, einem Hub beizutreten",
     "online": "{{count}} online",
     "members": "{{count}} Mitglieder",
     "button": "Beitreten"
   },
   "en": {
     "header": "You've been invited to join a server",
+    "header_hub": "You've been invited to join a hub",
     "online": "{{count}} Online",
     "members": "{{count}} Members",
     "button": "Join"
   },
   "es": {
-    "header": "Has sido invitado a unirte a un servidor",
-    "online": "{{count}} Online",
-    "members": "{{count}} Miembros",
+    "header": "Te han invitado a unirte a un servidor",
+    "header_hub": "Te han invitado a unirte a un Centro.",
+    "online": "{{count}} en línea",
+    "members": "{{count}} miembros",
     "button": "Unirse"
   },
   "fi": {
     "header": "Sinut on kutsuttu palvelimelle",
+    "header_hub": "Sinut on kutsuttu keskukseen",
     "online": "{{count}} paikalla",
     "members": "{{count}} jäsentä",
     "button": "Liity"
   },
   "hu": {
     "header": "Meghívtak, hogy csatlakozz egy szerverre",
+    "header_hub": "Meghívtak, hogy csatlakozz egy csomóponthoz",
     "online": "{{count}} online",
     "members": "{{count}} tag",
     "button": "Csatlakozás"
   },
   "ja": {
     "header": "サーバーへの招待を送信しました",
+    "header_hub": "Hub に招待されました",
     "online": "{{count}}人がオンライン",
     "members": "{{count}}人",
-    "button": "参加しました"
+    "button": "参加"
   },
   "lt": {
     "header": "Tu buvai pakviestas prisijungti prie serverio",
-    "online": "{{count}} prisijungęs",
-    "members": "{{count}} Nariai",
+    "header_hub": "Gavai kvietimą prisijungti prie Hub",
+    "online": "Prisijungusių narių: {{count}}",
+    "members": "{{count}} narių",
     "button": "Prisijungti"
   },
   "no": {
     "header": "Du har blitt invitert til å bli med i en server",
+    "header_hub": "Du har blitt invitert til en hub",
     "online": "{{count}} pålogget",
     "members": "{{count}} medlemmer",
-    "button": "Bli med"
+    "button": "Meld deg på"
   },
   "pt": {
     "header": "Você foi convidado(a) a entrar em um servidor",
+    "header_hub": "Convidaram você para uma Central",
     "online": "{{count}} online",
     "members": "{{count}} Membros",
     "button": "Juntar-se"
   },
   "ru": {
     "header": "Вы были приглашены присоединиться к серверу",
+    "header_hub": "Вас пригласили присоединиться к центру",
     "online": "{{count}} в сети",
     "members": "{{count}} участников",
     "button": "Вступить"
   },
   "tr": {
     "header": "Bir sunucuya katılmak için davet edildin",
+    "header_hub": "Bir Merkeze katılmak için davet edildin",
     "online": "{{count}} Çevrimiçi",
     "members": "{{count}} Üye",
     "button": "Katıl"
   },
   "uk": {
     "header": "Тебе запросили приєднатися до сервера",
+    "header_hub": "Вас запросили приєднатися до хабу",
     "online": "{{count}} у мережі",
     "members": "{{count}} учасників",
     "button": "Приєднатися"
