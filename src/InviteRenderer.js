@@ -93,6 +93,9 @@ const THEMES = {
 module.exports = class InviteRenderer {
   static async render (inviteCode, { language = 'en', animation = true, theme = 'dark' }) {
     const invite = await Discord.getInvite(inviteCode)
+    if (!invite.guild) {
+      return undefined
+    }
     const locale = strings[language] || strings.en
     const window = svgdom.createSVGWindow()
     const document = window.document
