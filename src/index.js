@@ -47,7 +47,7 @@ app.get('/:query', async (req, res) => {
   const inviteCode = await InviteResolver.resolve(req.params.query)
   logger.info(`Rendering ${inviteCode}`, { label: 'Renderer' })
   const inviteSVG = await InviteRenderer.render(inviteCode, req.query)
-  if (typeof inviteSVG === "undefined") {
+  if (typeof inviteSVG === 'undefined') {
     logger.error(`Failed to render ${inviteCode}, invite doesn't exist or has no guild`, { label: 'Renderer' })
     return res.sendStatus(404)
   }

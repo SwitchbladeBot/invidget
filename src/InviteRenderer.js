@@ -165,9 +165,8 @@ module.exports = class InviteRenderer {
       const circle = badgeContainer
         .circle(16)
         .fill(themeColors.badges.VERIFIED.flowerStar)
-      for (const path of BADGES.HUB)
-        badgeContainer.path(path).fill(themeColors.badges.VERIFIED.icon)
-      EXTRA_SERVER_NAME_PADDING = circle.width() + BADGE_MARGIN_RIGHT;
+      for (const path of BADGES.HUB) { badgeContainer.path(path).fill(themeColors.badges.VERIFIED.icon) }
+      EXTRA_SERVER_NAME_PADDING = circle.width() + BADGE_MARGIN_RIGHT
     } else if (invite.guild.features.includes('VERIFIED')) {
       const flowerStar = badgeContainer
         .path(Constants.SPECIAL_BADGE)
@@ -175,7 +174,7 @@ module.exports = class InviteRenderer {
       badgeContainer
         .path(BADGES.VERIFIED)
         .fill(themeColors.badges.VERIFIED.icon)
-      EXTRA_SERVER_NAME_PADDING = flowerStar.width() + BADGE_MARGIN_RIGHT;
+      EXTRA_SERVER_NAME_PADDING = flowerStar.width() + BADGE_MARGIN_RIGHT
     } else if (invite.guild.features.includes('PARTNERED')) {
       const flowerStar = badgeContainer
         .path(Constants.SPECIAL_BADGE)
@@ -183,7 +182,7 @@ module.exports = class InviteRenderer {
       badgeContainer
         .path(BADGES.PARTNERED)
         .fill(themeColors.badges.PARTNERED.icon)
-      EXTRA_SERVER_NAME_PADDING = flowerStar.width() + BADGE_MARGIN_RIGHT;
+      EXTRA_SERVER_NAME_PADDING = flowerStar.width() + BADGE_MARGIN_RIGHT
     }
 
     // Server Name
