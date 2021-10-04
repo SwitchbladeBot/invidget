@@ -48,6 +48,12 @@
     "members": "{{count}}人",
     "button": "参加"
   },
+  "ko": {
+    "header": "서버에 초대받았어요",
+    "online": "{{count}}명 온라인",
+    "members": "멤버 {{count}}명",
+    "button": "참가"
+  },
   "lt": {
     "header": "Tu buvai pakviestas prisijungti prie serverio",
     "header_hub": "Gavai kvietimą prisijungti prie Hub",
