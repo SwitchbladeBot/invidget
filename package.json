@@ -9,7 +9,7 @@
     "dd-trace": "^1.4.1",
     "express": "^4.17.1",
     "morgan": "^1.10.0",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^3.1.1",
     "sharp": "^0.29.1",
     "svgdom": "^0.1.8",
     "text-to-svg": "^3.1.5",
