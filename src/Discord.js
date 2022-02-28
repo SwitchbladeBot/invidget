@@ -1,6 +1,6 @@
 const fetch = require('node-fetch')
 
-const API_BASE_URL = 'https://discord.com/api/v6'
+const API_BASE_URL = 'https://discord.com/api/v10'
 const CDN_BASE_URL = 'https://cdn.discordapp.com'
 
 module.exports = class Discord {
