@@ -14,7 +14,6 @@ SVG.extend([SVG.Path, SVG.Circle], {
 
 const whitneyBold = TextToSVG.loadSync('./src/fonts/WhitneyBoldRegular.ttf')
 const whitneySemibold = TextToSVG.loadSync('./src/fonts/WhitneySemiboldRegular.ttf')
-const whitneyMedium = TextToSVG.loadSync('./src/fonts/WhitneyMediumRegular.ttf')
 
 const strings = require('./strings.json')
 
@@ -23,7 +22,7 @@ const ICON_SIZE = 50
 
 const HEADER_FONT_SIZE = 12
 const HEADER_LINE_HEIGHT = 16
-const HEADER_MARGIN_BOTTOM = 12
+const HEADER_MARGIN_BOTTOM = 75
 
 const SERVER_NAME_SIZE = 16
 const SERVER_NAME_LINE_HEIGHT = 20
@@ -37,13 +36,16 @@ const PRESENCE_DOT_SIZE = 8
 const PRESENCE_DOT_MARGIN_RIGHT = 4
 
 const INVITE_WIDTH = 430
-const INVITE_HEIGHT = 110
+const INVITE_HEIGHT = 174
 
-const BUTTON_WIDTH = 94.75
+const BUTTON_WIDTH = 63
 const BUTTON_HEIGHT = 40
 const BUTTON_MARGIN_LEFT = 10
 
 const BADGE_MARGIN_RIGHT = 8
+
+const SPLASH_WIDTH = 0
+const SPLASH_HEIGHT = 100
 
 const Constants = require('./constants.js')
 const BADGES = {
@@ -55,13 +57,13 @@ const BADGES = {
 // Old green color: #43b581
 
 const COMMON_COLORS = {
-  joinButtonBackground: '#3ba55c',
+  joinButtonBackground: '#2d7d46',
   joinButtonText: '#ffffff',
   online: '#3ba55c',
   members: '#747f8d',
   badges: {
     PARTNERED: {
-      flowerStar: '#7289da',
+      flowerStar: '#4f545c',
       icon: '#ffffff'
     },
     VERIFIED: {
@@ -115,7 +117,7 @@ module.exports = class InviteRenderer {
     const mainContainer = canvas.nested()
       .width(INVITE_WIDTH - 2 * PADDING)
       .height(INVITE_HEIGHT - 2 * PADDING)
-      .move(PADDING, PADDING)
+      .move(PADDING, 80)
 
     // Header
     const headerContainer = mainContainer.nested().width(mainContainer.width()).height(HEADER_LINE_HEIGHT)
@@ -125,12 +127,12 @@ module.exports = class InviteRenderer {
     const contentContainer = mainContainer.nested()
       .width(mainContainer.width())
       .height(mainContainer.height() - headerContainer.height() - HEADER_MARGIN_BOTTOM)
-      .move(0, headerContainer.height() + HEADER_MARGIN_BOTTOM)
+      .move(0, headerContainer.height() + HEADER_MARGIN_BOTTOM - 64)
 
     // Server Icon
     const squircle = contentContainer.rect(ICON_SIZE, ICON_SIZE).radius(16).fill(themeColors.serverIcon)
     if (invite.guild.icon) {
-      const iconBase64 = await Discord.fetchIcon(Discord.getIconUrl(invite.guild.id, invite.guild.icon))
+      const iconBase64 = await Discord.fetchBase64Image(Discord.getIconUrl(invite.guild.id, invite.guild.icon))
       const iconImage = contentContainer.image(`data:image/${invite.guild.icon.startsWith('a_') ? 'gif' : 'jpg'};base64,${iconBase64}`).size(ICON_SIZE, ICON_SIZE)
       iconImage.clipWith(squircle)
     }
@@ -146,7 +148,7 @@ module.exports = class InviteRenderer {
     buttonContainer.rect(BUTTON_WIDTH, BUTTON_HEIGHT)
       .radius(3)
       .fill(themeColors.joinButtonBackground)
-    const joinButtonText = buttonContainer.path(whitneyMedium.getD(locale.button, { fontSize: 14 }))
+    const joinButtonText = buttonContainer.path(whitneySemibold.getD(locale.button, { fontSize: 14 }))
       .fill(themeColors.joinButtonText)
     joinButtonText.move((BUTTON_WIDTH - joinButtonText.width()) / 2, (BUTTON_HEIGHT - joinButtonText.height()) / 2)
 
@@ -183,6 +185,13 @@ module.exports = class InviteRenderer {
         .path(BADGES.PARTNERED)
         .fill(themeColors.badges.PARTNERED.icon)
       EXTRA_SERVER_NAME_PADDING = flowerStar.width() + BADGE_MARGIN_RIGHT
+    }
+
+    const splashcircle = contentContainer.rect(SPLASH_HEIGHT, SPLASH_WIDTH).radius(16).fill(themeColors.serverIcon)
+    if (invite.guild.splash) {
+      const iconBase64 = await Discord.fetchBase64Image(Discord.getSplashUrl(invite.guild.id, invite.guild.splash))
+      const iconImage = contentContainer.image(`data:image/jpg;base64,${iconBase64}`).size(SPLASH_WIDTH, SPLASH_HEIGHT)
+      iconImage.clipWith(splashcircle)
     }
 
     // Server Name
