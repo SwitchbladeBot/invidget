@@ -12,11 +12,16 @@ module.exports = class Discord {
     return fetch(`${API_BASE_URL}/invites/${inviteCode}?with_counts=true`).then(res => res.json())
   }
 
-  static fetchIcon (iconUrl) {
+  static fetchBase64Image (iconUrl) {
     return fetch(iconUrl).then(res => res.buffer()).then(buffer => buffer.toString('base64'))
   }
 
   static getIconUrl (guildId, iconId) {
     return `${CDN_BASE_URL}/icons/${guildId}/${iconId}${iconId.startsWith('a_') ? '.gif' : '.jpg'}`
+  }
+
+  static getSplashUrl (guildId, splashId) {
+    console.log(`${CDN_BASE_URL}/splashes/${guildId}/${splashId}.jpg?size=480`)
+    return `${CDN_BASE_URL}/splashes/${guildId}/${splashId}.jpg?size=480`
   }
 }
