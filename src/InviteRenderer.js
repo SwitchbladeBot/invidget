@@ -14,7 +14,6 @@ SVG.extend([SVG.Path, SVG.Circle], {
 
 const whitneyBold = TextToSVG.loadSync('./src/fonts/WhitneyBoldRegular.ttf')
 const whitneySemibold = TextToSVG.loadSync('./src/fonts/WhitneySemiboldRegular.ttf')
-const whitneyMedium = TextToSVG.loadSync('./src/fonts/WhitneyMediumRegular.ttf')
 
 const strings = require('./strings.json')
 
