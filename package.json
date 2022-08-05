@@ -6,10 +6,10 @@
   "dependencies": {
     "@sentry/node": "^6.13.2",
     "@svgdotjs/svg.js": "^3.1.1",
-    "axios": "^0.27.2",
     "dd-trace": "^1.4.1",
     "express": "^4.17.1",
     "morgan": "^1.10.0",
+    "node-fetch": "^3.2.10",
     "sharp": "^0.29.1",
     "svgdom": "^0.1.8",
     "text-to-svg": "^3.1.5",

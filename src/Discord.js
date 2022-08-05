@@ -1,3 +1,4 @@
+const fetch = require('node-fetch')
 const axios = require('axios')
 
 const API_BASE_URL = 'https://discord.com/api/v10'
@@ -5,15 +6,15 @@ const CDN_BASE_URL = 'https://cdn.discordapp.com'
 
 module.exports = class Discord {
   static getWidget (guildId) {
-    return axios(`${API_BASE_URL}/guilds/${guildId}/widget.json`).then(res => res.data)
+    return fetch(`${API_BASE_URL}/guilds/${guildId}/widget.json`).then(res => res.json())
   }
 
   static getInvite (inviteCode) {
-    return axios(`${API_BASE_URL}/invites/${inviteCode}?with_counts=true`).then(res => res.data)
+    return fetch(`${API_BASE_URL}/invites/${inviteCode}?with_counts=true`).then(res => res.json())
   }
 
   static fetchBase64Image (iconUrl) {
-    return axios(iconUrl, { responseType: 'arraybuffer' }).then(res => Buffer.from(res.data, 'binary').toString('base64'))
+    return fetch(iconUrl).then(res => res.buffer()).then(buffer => buffer.toString('base64'))
   }
 
   static getIconUrl (guildId, iconId) {
