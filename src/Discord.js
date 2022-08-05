@@ -1,19 +1,19 @@
-const fetch = require('node-fetch')
+const axios = require('axios')
 
 const API_BASE_URL = 'https://discord.com/api/v10'
 const CDN_BASE_URL = 'https://cdn.discordapp.com'
 
 module.exports = class Discord {
   static getWidget (guildId) {
-    return fetch(`${API_BASE_URL}/guilds/${guildId}/widget.json`).then(res => res.json())
+    return axios(`${API_BASE_URL}/guilds/${guildId}/widget.json`).then(res => res.data)
   }
 
   static getInvite (inviteCode) {
-    return fetch(`${API_BASE_URL}/invites/${inviteCode}?with_counts=true`).then(res => res.json())
+    return axios(`${API_BASE_URL}/invites/${inviteCode}?with_counts=true`).then(res => res.data)
   }
 
   static fetchBase64Image (iconUrl) {
-    return fetch(iconUrl).then(res => res.buffer()).then(buffer => buffer.toString('base64'))
+    return axios(iconUrl, { responseType: 'arraybuffer' }).then(res => Buffer.from(res.data, 'binary').toString('base64'))
   }
 
   static getIconUrl (guildId, iconId) {
@@ -21,7 +21,6 @@ module.exports = class Discord {
   }
 
   static getSplashUrl (guildId, splashId) {
-    console.log(`${CDN_BASE_URL}/splashes/${guildId}/${splashId}.jpg?size=480`)
     return `${CDN_BASE_URL}/splashes/${guildId}/${splashId}.jpg?size=480`
   }
 }
