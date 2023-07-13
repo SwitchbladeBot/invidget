@@ -1,4 +1,11 @@
 {
+  "bg": {
+    "header": "Поканили са те да се присъединиш към сървър",
+    "header_hub": "Поканили са те да се присъединиш към хъб",
+    "online": "{{count}} на линия",
+    "members": "{{count}} членове",
+    "button": "Присъедини се"
+  },
   "da": {
     "header": "Du er blevet inviteret til at tilslutte dig en server",
     "header_hub": "Du er blevet inviteret til at joine en hub",
@@ -89,18 +96,11 @@
     "members": "{{count}} Üye",
     "button": "Katıl"
   },
-  "ua": {
+  "uk": {
     "header": "Тебе запросили приєднатися до сервера",
     "header_hub": "Вас запросили приєднатися до хабу",
     "online": "{{count}} у мережі",
     "members": "{{count}} учасників",
     "button": "Приєднатися"
-  },
-  "bg": {
-    "header": "Поканили са те да се присъединиш към сървър",
-    "header_hub": "Поканили са те да се присъединиш към хъб",
-    "online": "{{count}} на линия",
-    "members": "{{count}} членове",
-    "button": "Присъедини се"
   }
 }
