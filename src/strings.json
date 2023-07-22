@@ -41,6 +41,13 @@
     "members": "{{count}} jäsentä",
     "button": "Liity"
   },
+  "fr": {
+    "header": "Tu as été invité(e) à rejoindre un serveur",
+    "header_hub": "Vous avez été invité à rejoindre un hub",
+    "online": "{{count}} en ligne",
+    "members": "{{count}} membres",
+    "button": "Rejoindre"
+  },
   "hu": {
     "header": "Meghívtak, hogy csatlakozz egy szerverre",
     "header_hub": "Meghívtak, hogy csatlakozz egy csomóponthoz",
