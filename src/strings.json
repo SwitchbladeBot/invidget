@@ -94,7 +94,7 @@
     "header_hub": "Ai fost invitat să te alături unui hub", 
     "online": "{{count}} pe net", 
     "members": "{{count}} membrii", 
-    "button": "Alătură-te" } 
+    "button": "Alătură-te" 
   },
   "ru": {
     "header": "Вы были приглашены присоединиться к серверу",
