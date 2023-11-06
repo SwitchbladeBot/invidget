@@ -1,16 +1,19 @@
 {
   "name": "invidget",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "SVG invite widgets that look just like the ones on the Discord client!",
   "main": "src/index.js",
+  "engines": {
+    "node": ">=12"
+  },
   "dependencies": {
     "@sentry/node": "^6.13.2",
     "@svgdotjs/svg.js": "^3.1.1",
     "dd-trace": "^1.4.1",
     "express": "^4.17.1",
     "morgan": "^1.10.0",
-    "node-fetch": "^2.6.0",
-    "sharp": "^0.29.1",
+    "node-fetch": "^2.6.12",
+    "sharp": "^0.32.4",
     "svgdom": "^0.1.8",
     "text-to-svg": "^3.1.5",
     "winston": "^3.10.0"
@@ -33,6 +36,11 @@
     "type": "git",
     "url": "git+https://github.com/SwitchbladeBot/invidget.git"
   },
+  "cpu": [
+    "x64",
+    "ia32",
+    "arm"
+  ],
   "standard": {
     "env": [
       "jest"
