@@ -131,7 +131,7 @@ module.exports = class InviteRenderer {
     const squircle = contentContainer.rect(ICON_SIZE, ICON_SIZE).radius(16).fill(themeColors.serverIcon)
     if (invite.guild.icon) {
       const iconBase64 = await Discord.fetchIcon(Discord.getIconUrl(invite.guild.id, invite.guild.icon))
-      const iconImage = contentContainer.image(`data:image/${invite.guild.icon.startsWith('a_') ? 'gif' : 'jpg'};base64,${iconBase64}`).size(ICON_SIZE, ICON_SIZE)
+      const iconImage = contentContainer.image(`data:image/${invite.guild.icon.startsWith('a_') ? 'gif' : 'jpeg'};base64,${iconBase64}`).size(ICON_SIZE, ICON_SIZE)
       iconImage.clipWith(squircle)
     }
 
