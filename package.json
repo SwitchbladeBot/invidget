@@ -22,7 +22,7 @@
 		"@types/react": "^19.1.8",
 		"@types/react-dom": "^19.1.6",
 		"typescript": "^5.5.2",
-		"vitest": "~3.2.0",
+		"vitest": "~5.1.1",
 		"wrangler": "^4.20.0"
 	},
 	"dependencies": {
