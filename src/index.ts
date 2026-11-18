@@ -44,17 +44,39 @@ export default {
 		const cache = (caches as unknown as { default: Cache }).default;
 
 		const cached = await cache.match(cacheKey);
-		if (cached) return cached;
+		if (cached) return fromCache(cached);
 
 		const response = await handle(path, query);
 
 		if (response.headers.get('Cache-Control')?.startsWith('public')) {
-			ctx.waitUntil(cache.put(cacheKey, response.clone()).catch((err) => console.error('cache.put failed:', err)));
+			ctx.waitUntil(cache.put(cacheKey, toCacheable(response.clone())).catch((err) => console.error('cache.put failed:', err)));
 		}
 
 		return response;
 	},
 } satisfies ExportedHandler<Env>;
+
+/**
+ * The Cache API follows HTTP caching rules, which refuse to store most 5xx responses even with
+ * an explicit Cache-Control. Errors are stored as 200 with the real status in this header, and
+ * restored on the way out, so a burst of requests during a Discord outage still hits the cache.
+ */
+const CACHED_STATUS_HEADER = 'X-Invidget-Status';
+
+function toCacheable(response: Response): Response {
+	if (response.status < 500) return response;
+	const headers = new Headers(response.headers);
+	headers.set(CACHED_STATUS_HEADER, String(response.status));
+	return new Response(response.body, { status: 200, headers });
+}
+
+function fromCache(cached: Response): Response {
+	const status = cached.headers.get(CACHED_STATUS_HEADER);
+	if (!status) return cached;
+	const headers = new Headers(cached.headers);
+	headers.delete(CACHED_STATUS_HEADER);
+	return new Response(cached.body, { status: Number(status), headers });
+}
 
 async function handle(path: string, query: InviteTemplateQuery): Promise<Response> {
 	if (path === '') {
