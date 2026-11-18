@@ -64,6 +64,7 @@
   },
   "ko": {
     "header": "서버에 초대받았어요",
+    "header_hub": "You've been invited to join a hub",
     "online": "{{count}}명 온라인",
     "members": "멤버 {{count}}명",
     "button": "참가"

@@ -3,10 +3,8 @@
   <br>
   <br>
   
-  [![ci][ci-badge]][ci-url]
   [![backers][backers-badge]][backers-url]
   [![sponsors][sponsors-badge]][sponsors-url]
-  [![docker][docker-badge]][docker-url]
 </div>
 
 <hr>
@@ -35,7 +33,11 @@ http://invidget.switchblade.xyz/YOUR_INVITE_CODE_OR_SERVER_ID
 
 ### Different language `?language=pt`
 
-![Light theme preview](http://invidget.switchblade.xyz/2FB8wDG?language=pt)
+![Portuguese theme preview](http://invidget.switchblade.xyz/2FB8wDG?language=pt)
+
+### Disable animation `?animation=false`
+
+![Dark theme preview with no animation](http://invidget.switchblade.xyz/2FB8wDG?animation=false)
 
 **⚠ THIS PROJECT IS A WIP!**
 
@@ -44,7 +46,7 @@ http://invidget.switchblade.xyz/YOUR_INVITE_CODE_OR_SERVER_ID
 - Clone this repo
 - `npm install`
 - Run `npm run dev` to get the development server up
-- Access it through http://localhost:8080/
+- Access it through http://localhost:8787/
 
 ## String guidelines
 
